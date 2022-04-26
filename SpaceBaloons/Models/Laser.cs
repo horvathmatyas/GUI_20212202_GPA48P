@@ -11,20 +11,30 @@ namespace SpaceBaloons.Models
     {        
         public Point Pos { get; set; }
         public int Speed { get; set; }
-        public bool InView { get; set; }
-        public Laser(Point pos, int speed, bool inView)
+        public Laser(Point pos, int speed)
         {
             Pos = pos;
             Speed = speed;
-            InView = inView;
         }
         public void Move(Size size)
         {
             Point newPos = new Point(Pos.X, Pos.Y + Speed);
-            if (InView)
+            if (InView(newPos,size))
             {
                 Pos = newPos;
             }
+        }
+        bool InView(Point pos, Size area)
+        {
+            if (pos.X >= 0 &&
+                pos.X <= area.Width &&
+                pos.Y >= 0 &&
+                pos.Y <= area.Height
+                )
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

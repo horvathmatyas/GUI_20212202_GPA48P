@@ -12,23 +12,33 @@ namespace SpaceBaloons.Models
         public Point Pos { get; set; }
         public int Speed { get; set; }
         public double Health { get; set; }
-        public bool InView { get; set; }
         public Baloon(Point pos, int speed, double health)
         {
             Pos = pos;
             Speed = speed;
             Health = health;
         }       
-        public void Move(System.Drawing.Size size)
+        public void Move(Size size)
         {
-            System.Drawing.Point newPos = new System.Drawing.Point(Pos.X, Pos.Y+Speed);
-            if (InView)
+            Point newPos = new System.Drawing.Point(Pos.X, Pos.Y+Speed);
+            if (InView(newPos,size))
             {
                 Pos = newPos;
             }
         }
-        
-        
+        bool InView(Point pos, Size area)
+        {
+            if (pos.X >= 0 &&
+                pos.X <= area.Width &&
+                pos.Y >= 0 &&
+                pos.Y <= area.Height
+                )
+            {
+                return true;
+            }
+            return false;
+        }
+
 
     }
 }
