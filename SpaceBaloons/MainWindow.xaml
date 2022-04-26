@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SpaceBaloons"
         mc:Ignorable="d"
-        Title="SpaceBaloons" Height="450" Width="800">
+        Title="SpaceBaloons" Height="450" Width="800" WindowState="Maximized" WindowStyle="None">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*" x:Name="upgrades_grid"/>

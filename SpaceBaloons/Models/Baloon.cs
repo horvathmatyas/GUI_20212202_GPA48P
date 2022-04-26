@@ -26,7 +26,7 @@ namespace SpaceBaloons.Models
                 Pos = newPos;
             }
         }
-        bool InView(Point pos, Size area)
+        public  InView(Point pos, Size area)
         {
             if (pos.X >= 0 &&
                 pos.X <= area.Width &&
