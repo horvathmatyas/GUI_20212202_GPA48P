@@ -38,7 +38,10 @@ namespace SpaceBaloons.Models
             }
             return false;
         }
-
+        public Baloon Pop()
+        {
+            return new Baloon(Pos,Speed,Health-1);
+        }
 
     }
 }
