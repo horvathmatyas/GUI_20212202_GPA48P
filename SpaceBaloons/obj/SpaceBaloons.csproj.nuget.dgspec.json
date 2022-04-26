@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Tanu\\202122_2\\SZTGUI\\féléves\\SpaceBaloons\\SpaceBaloons\\SpaceBaloons.csproj": {}
+    "D:\\Tanu\\202122_2\\SZTGUI\\félévesfeladat\\SpaceBaloons\\SpaceBaloons.csproj": {}
   },
   "projects": {
-    "D:\\Tanu\\202122_2\\SZTGUI\\féléves\\SpaceBaloons\\SpaceBaloons\\SpaceBaloons.csproj": {
+    "D:\\Tanu\\202122_2\\SZTGUI\\félévesfeladat\\SpaceBaloons\\SpaceBaloons.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Tanu\\202122_2\\SZTGUI\\féléves\\SpaceBaloons\\SpaceBaloons\\SpaceBaloons.csproj",
+        "projectUniqueName": "D:\\Tanu\\202122_2\\SZTGUI\\félévesfeladat\\SpaceBaloons\\SpaceBaloons.csproj",
         "projectName": "SpaceBaloons",
-        "projectPath": "D:\\Tanu\\202122_2\\SZTGUI\\féléves\\SpaceBaloons\\SpaceBaloons\\SpaceBaloons.csproj",
+        "projectPath": "D:\\Tanu\\202122_2\\SZTGUI\\félévesfeladat\\SpaceBaloons\\SpaceBaloons.csproj",
         "packagesPath": "C:\\Users\\jooda\\.nuget\\packages\\",
-        "outputPath": "D:\\Tanu\\202122_2\\SZTGUI\\féléves\\SpaceBaloons\\SpaceBaloons\\obj\\",
+        "outputPath": "D:\\Tanu\\202122_2\\SZTGUI\\félévesfeladat\\SpaceBaloons\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\jooda\\AppData\\Roaming\\NuGet\\NuGet.Config",
