@@ -7,28 +7,24 @@ using System.Threading.Tasks;
 
 namespace SpaceBaloons.Models
 {
-    internal class Baloon
-    {
+    internal class Laser
+    {        
         public Point Pos { get; set; }
         public int Speed { get; set; }
-        public double Health { get; set; }
         public bool InView { get; set; }
-        public Baloon(Point pos, int speed, double health)
+        public Laser(Point pos, int speed, bool inView)
         {
             Pos = pos;
             Speed = speed;
-            Health = health;
-        }       
-        public void Move(System.Drawing.Size size)
+            InView = inView;
+        }
+        public void Move(Size size)
         {
-            System.Drawing.Point newPos = new System.Drawing.Point(Pos.X, Pos.Y+Speed);
+            Point newPos = new Point(Pos.X, Pos.Y + Speed);
             if (InView)
             {
                 Pos = newPos;
             }
         }
-        
-        
-
     }
 }
