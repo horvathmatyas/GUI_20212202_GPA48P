@@ -14,5 +14,6 @@ namespace SpaceBaloons.Interface
         List<Laser> Lasers { get; set; }
         List<Baloon> Baloons { get; set; }
         event EventHandler Changed;
+        Player player { get; set; }
     }
 }

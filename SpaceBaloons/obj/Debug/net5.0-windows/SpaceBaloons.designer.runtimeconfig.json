@@ -6,8 +6,8 @@
       "version": "5.0.0"
     },
     "additionalProbingPaths": [
-      "C:\\Users\\jooda\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\jooda\\.nuget\\packages"
+      "C:\\Users\\joozo\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\joozo\\.nuget\\packages"
     ],
     "configProperties": {
       "Microsoft.NETCore.DotNetHostPolicy.SetAppPaths": true

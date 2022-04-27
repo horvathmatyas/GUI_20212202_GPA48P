@@ -8,19 +8,19 @@
     "net5.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\jooda\\.nuget\\packages\\": {}
+    "C:\\Users\\joozo\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Tanu\\202122_2\\SZTGUI\\félévesfeladat\\SpaceBaloons\\SpaceBaloons.csproj",
+      "projectUniqueName": "C:\\Users\\joozo\\source\\repos\\GUI_20212202_GPA48P\\SpaceBaloons\\SpaceBaloons.csproj",
       "projectName": "SpaceBaloons",
-      "projectPath": "D:\\Tanu\\202122_2\\SZTGUI\\félévesfeladat\\SpaceBaloons\\SpaceBaloons.csproj",
-      "packagesPath": "C:\\Users\\jooda\\.nuget\\packages\\",
-      "outputPath": "D:\\Tanu\\202122_2\\SZTGUI\\félévesfeladat\\SpaceBaloons\\obj\\",
+      "projectPath": "C:\\Users\\joozo\\source\\repos\\GUI_20212202_GPA48P\\SpaceBaloons\\SpaceBaloons.csproj",
+      "packagesPath": "C:\\Users\\joozo\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\joozo\\source\\repos\\GUI_20212202_GPA48P\\SpaceBaloons\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\jooda\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\joozo\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -63,7 +63,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }
