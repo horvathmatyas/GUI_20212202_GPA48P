@@ -20,24 +20,12 @@ namespace SpaceBaloons.Models
         }
         public void Move(Size size)
         {
-            Point newPos = new System.Drawing.Point(Pos.X, Pos.Y+Speed);
-            if (InView(newPos,size))
-            {
-                Pos = newPos;
-            }
+            Point newPos = new System.Drawing.Point(Pos.X, Pos.Y+Speed);                       
+            Pos = newPos;
+            
         }
-        public bool InView(Point pos, Size area)
-        {
-            if (pos.X >= 0 &&
-                pos.X <= area.Width &&
-                pos.Y >= 0 &&
-                pos.Y <= area.Height
-                )
-            {
-                return true;
-            }
-            return false;
-        }
+ 
+        
         public Baloon Pop()
         {
             return new Baloon(Pos,Speed,Health-1);
