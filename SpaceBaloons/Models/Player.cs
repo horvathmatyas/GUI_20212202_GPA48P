@@ -8,7 +8,7 @@ namespace SpaceBaloons.Models
 {
     internal class Player
     {
-        public int Name { get; set; }
+        public string Name { get; set; }
         public int Score { get; set; } 
         public int AttackSpeed { get; set; } //rate of fire per second (1 per second at the start)
         public int Cooldown { get; set; } //the time it takes to cool the turret down after reaching maxheat (decreased by 1 every 0.2 seconds)
@@ -16,7 +16,7 @@ namespace SpaceBaloons.Models
         public double CurrentHeat { get; set; } //the current heat of the turret (max at 100)
         public int Health { get; set; }
 
-        public Player(int name)
+        public Player(string name)
         {
             Name = name;
             Score = 0;

@@ -25,15 +25,24 @@ namespace SpaceBaloons.Logic
         {
             Left, Right, Shoot
         }
-        public void SetupGame(System.Windows.Size area)
+        public void SetupGame(System.Windows.Size area, string name)
         {
             this.area = area;
             Lasers=new List<Laser>();
             Baloons=new List<Baloon>();
+            player = new Player(name);
         }
         public GameLogic()
         {
 
+        }
+        public void NewShot()
+        {
+            if (player.CurrentHeat < 100)
+            {
+                Lasers.Add(new Laser(PlayerPos, 5));
+                player.CurrentHeat += player.HeatGain;
+            }
         }
         public void Control(Controls controls)
         {
@@ -46,6 +55,7 @@ namespace SpaceBaloons.Logic
                     PlayerPos = new System.Drawing.Point(PlayerPos.X + 1, 0);
                     break;
                 case Controls.Shoot:
+                    NewShot();
                     break;
                 default:
                     break;
