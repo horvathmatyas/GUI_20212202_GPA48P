@@ -27,7 +27,7 @@ namespace SpaceBaloons.Models
             Health = 100;
         }
 
-        public Player LoadPlayer(int name, int score, int attackSpeed, int cooldown, double heatGain, double currentHeat, int health) //needed to load player stats
+        public Player LoadPlayer(string name, int score, int attackSpeed, int cooldown, double heatGain, double currentHeat, int health) //needed to load player stats
         {
             return new Player(name)
             {
