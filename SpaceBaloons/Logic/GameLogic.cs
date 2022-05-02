@@ -101,11 +101,14 @@ namespace SpaceBaloons.Logic
 
                         if (Baloons[i].Health == 1)
                         {
+                            player.Score += Baloons[i].Health;
                             Baloons.RemoveAt(i);
                             Lasers.RemoveAt(j);
+
                         }
                         else
                         {
+                            player.Score += Baloons[i].Health;
                             Baloons.Add(Baloons[i].Pop());
                             Baloons.RemoveAt(i);
                             Lasers.RemoveAt(j);
