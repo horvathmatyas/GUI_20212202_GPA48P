@@ -8,19 +8,19 @@
     "net5.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\joozo\\.nuget\\packages\\": {}
+    "C:\\Users\\Hooveny\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\joozo\\source\\repos\\GUI_20212202_GPA48P\\SpaceBaloons\\SpaceBaloons.csproj",
+      "projectUniqueName": "D:\\Óbudai Egyetem\\Prog 4\\Féléves Játék\\SAJÁT JÁTÉK\\SpaceBaloons\\SpaceBaloons.csproj",
       "projectName": "SpaceBaloons",
-      "projectPath": "C:\\Users\\joozo\\source\\repos\\GUI_20212202_GPA48P\\SpaceBaloons\\SpaceBaloons.csproj",
-      "packagesPath": "C:\\Users\\joozo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\joozo\\source\\repos\\GUI_20212202_GPA48P\\SpaceBaloons\\obj\\",
+      "projectPath": "D:\\Óbudai Egyetem\\Prog 4\\Féléves Játék\\SAJÁT JÁTÉK\\SpaceBaloons\\SpaceBaloons.csproj",
+      "packagesPath": "C:\\Users\\Hooveny\\.nuget\\packages\\",
+      "outputPath": "D:\\Óbudai Egyetem\\Prog 4\\Féléves Játék\\SAJÁT JÁTÉK\\SpaceBaloons\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\joozo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Hooveny\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -63,7 +63,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }
