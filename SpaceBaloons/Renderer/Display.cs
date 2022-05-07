@@ -15,6 +15,8 @@ namespace SpaceBaloons.Renderer
     {
         Size area;
         GameModel model;
+        static Random r = new Random();
+
         public void SetupSizes(Size area)
         {
             this.area = area;
@@ -131,8 +133,60 @@ namespace SpaceBaloons.Renderer
             if (area.Width > 0 && area.Height > 0 && model != null)
             {
                 drawingContext.DrawRectangle(SpaceBrush, null, new Rect(0, 0, area.Width, area.Height));
-                drawingContext.DrawRectangle(ShipBrush, null, new Rect(area.Width / 2 - 25, area.Height / 10 + 50, 50, 50));
+
                 drawingContext.PushTransform(new TranslateTransform(model.PlayerPos.X, model.PlayerPos.Y));
+                drawingContext.DrawRectangle(ShipBrush, null, new Rect(area.Width / 2 - 25, area.Height / 10 + 50, 50, 50));
+                drawingContext.Pop();
+
+                foreach (var item in model.Lasers)
+                {
+                    int rn = r.Next(0, 4);
+                    if (rn == 0)
+                    {
+                        drawingContext.DrawEllipse(BlueLaserBrush, null, new Point(item.Pos.X, item.Pos.Y), 6, 10);
+                    }
+                    else if (rn == 1)
+                    {
+                        drawingContext.DrawEllipse(RedLaserBrush, null, new Point(item.Pos.X, item.Pos.Y), 6, 10);
+                    }
+                    else if (rn == 2)
+                    {
+                        drawingContext.DrawEllipse(YellowLaserBrush, null, new Point(item.Pos.X, item.Pos.Y), 6, 10);
+                    }
+                    else
+                    {
+                        drawingContext.DrawEllipse(GreenLaserBrush, null, new Point(item.Pos.X, item.Pos.Y), 6, 10);
+                    }
+
+                }
+                foreach (var item in model.Baloons)
+                {
+                    if (item.Health == 1)
+                    {
+                        drawingContext.DrawEllipse(WhiteLoonBrush, null, new Point(item.Pos.X, item.Pos.Y), 25, 25);
+
+                    }
+                    else if (item.Health == 2)
+                    {
+                        drawingContext.DrawEllipse(BlueLoonBrush, null, new Point(item.Pos.X, item.Pos.Y), 25, 25);
+                    }
+                    else if (item.Health == 3)
+                    {
+                        drawingContext.DrawEllipse(YellowLoonBrush, null, new Point(item.Pos.X, item.Pos.Y), 25, 25);
+                    }
+                    else if (item.Health == 4)
+                    {
+                        drawingContext.DrawEllipse(GreenLoonBrush, null, new Point(item.Pos.X, item.Pos.Y), 25, 25);
+                    }
+                    else if (item.Health == 5)
+                    {
+                        drawingContext.DrawEllipse(RedLoonBrush, null, new Point(item.Pos.X, item.Pos.Y), 25, 25);
+                    }
+                    else
+                    {
+                        drawingContext.DrawEllipse(BlackLoonBrush, null, new Point(item.Pos.X, item.Pos.Y), 25, 25);
+                    }
+                }
 
             }
         }
