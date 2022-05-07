@@ -1,11 +1,13 @@
 ﻿using SpaceBaloons.Interface;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace SpaceBaloons.Renderer
 {
@@ -23,9 +25,116 @@ namespace SpaceBaloons.Renderer
             this.model = model;
             this.model.Changed += (sender, eventargs) => this.InvalidateVisual();
         }
+        public Brush WhiteLoonBrush
+        {
+            get
+            {
+                return new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "fehér.png"), UriKind.RelativeOrAbsolute)));
+            }
+        }
+        public Brush BlueLoonBrush
+        {
+            get
+            {
+                return new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "kék.png"), UriKind.RelativeOrAbsolute)));
+            }
+        }
+        public Brush YellowLoonBrush
+        {
+            get
+            {
+                return new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "sárga.png"), UriKind.RelativeOrAbsolute)));
+            }
+        }
+        public Brush GreenLoonBrush
+        {
+            get
+            {
+                return new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "zöld.png"), UriKind.RelativeOrAbsolute)));
+            }
+        }
+        public Brush RedLoonBrush
+        {
+            get
+            {
+                return new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "prios.png"), UriKind.RelativeOrAbsolute)));
+            }
+        }
+        public Brush BlackLoonBrush
+        {
+            get
+            {
+                return new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "fekete.png"), UriKind.RelativeOrAbsolute)));
+            }
+        }
+        public Brush SpaceBrush
+        {
+            get
+            {
+                return new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "fekete_háttérsssd.jpg"), UriKind.RelativeOrAbsolute)));
+            }
+        }
+        public Brush DesertBrush
+        {
+            get
+            {
+                return new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "homok2.jpg"), UriKind.RelativeOrAbsolute)));
+            }
+        }
+        public Brush PlanetBrush
+        {
+            get
+            {
+                return new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "bolygossokadik.jpg"), UriKind.RelativeOrAbsolute)));
+            }
+        }
+        public Brush ShipBrush
+        {
+            get
+            {
+                return new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "Untitled-3.png"), UriKind.RelativeOrAbsolute)));
+            }
+        }
+        public Brush BlueLaserBrush
+        {
+            get
+            {
+                return new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "lézer_kék.png"), UriKind.RelativeOrAbsolute)));
+            }
+        }
+        public Brush RedLaserBrush
+        {
+            get
+            {
+                return new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "lézer_piros.png"), UriKind.RelativeOrAbsolute)));
+            }
+        }
+        public Brush YellowLaserBrush
+        {
+            get
+            {
+                return new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "lézer_sárga.png"), UriKind.RelativeOrAbsolute)));
+            }
+        }
+        public Brush GreenLaserBrush
+        {
+            get
+            {
+                return new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "lézer_zöld.png"), UriKind.RelativeOrAbsolute)));
+            }
+        }
+
+
         protected override void OnRender(DrawingContext drawingContext)
         {
             base.OnRender(drawingContext);
+            if (area.Width > 0 && area.Height > 0 && model != null)
+            {
+                drawingContext.DrawRectangle(SpaceBrush, null, new Rect(0, 0, area.Width, area.Height));
+                drawingContext.DrawRectangle(ShipBrush, null, new Rect(area.Width / 2 - 25, area.Height / 10 + 50, 50, 50));
+                drawingContext.PushTransform(new TranslateTransform(model.PlayerPos.X, model.PlayerPos.Y));
+
+            }
         }
     }
 }

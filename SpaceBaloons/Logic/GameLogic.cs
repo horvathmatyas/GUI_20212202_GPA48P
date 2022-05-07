@@ -31,6 +31,7 @@ namespace SpaceBaloons.Logic
             Lasers=new List<Laser>();
             Baloons=new List<Baloon>();
             player = new Player(name);
+            PlayerPos = new System.Drawing.Point((int)area.Width / 2,(int)area.Height / 10 + 50);
         }
         public GameLogic()
         {
@@ -49,10 +50,10 @@ namespace SpaceBaloons.Logic
             switch (controls)
             {
                 case Controls.Left:
-                    PlayerPos=new System.Drawing.Point(PlayerPos.X-1,0);
+                    PlayerPos=new System.Drawing.Point(PlayerPos.X-1,PlayerPos.Y);
                     break;
                 case Controls.Right:
-                    PlayerPos = new System.Drawing.Point(PlayerPos.X + 1, 0);
+                    PlayerPos = new System.Drawing.Point(PlayerPos.X + 1, PlayerPos.Y);
                     break;
                 case Controls.Shoot:
                     NewShot();

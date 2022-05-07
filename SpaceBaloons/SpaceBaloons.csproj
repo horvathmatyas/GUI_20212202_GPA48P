@@ -9,8 +9,8 @@
   <ItemGroup>
     <None Remove="Images\bolygossokadik.jpg" />
     <None Remove="Images\fehér.png" />
-    <None Remove="Images\fekete háttérsssd.jpg" />
     <None Remove="Images\fekete.png" />
+    <None Remove="Images\fekete_háttérsssd.jpg" />
     <None Remove="Images\homok2.jpg" />
     <None Remove="Images\kék.png" />
     <None Remove="Images\lézer_kék.png" />
@@ -18,7 +18,6 @@
     <None Remove="Images\lézer_sárga.png" />
     <None Remove="Images\lézer_zöld.png" />
     <None Remove="Images\prios.png" />
-    <None Remove="Images\sfcFCS.jpg" />
     <None Remove="Images\sárga.png" />
     <None Remove="Images\Untitled-3.png" />
     <None Remove="Images\zöld.png" />
@@ -33,7 +32,7 @@
     <Content Include="Images\fehér.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\fekete háttérsssd.jpg">
+    <Content Include="Images\fekete_háttérsssd.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\fekete.png">
@@ -58,9 +57,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\prios.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\sfcFCS.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\sárga.png">
