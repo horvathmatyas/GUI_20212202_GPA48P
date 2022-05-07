@@ -133,8 +133,9 @@ namespace SpaceBaloons.Renderer
             if (area.Width > 0 && area.Height > 0 && model != null)
             {
                 drawingContext.DrawRectangle(SpaceBrush, null, new Rect(0, 0, area.Width, area.Height));
+                drawingContext.DrawRectangle(Brushes.Red, null, new Rect(0, area.Height / 10, area.Width, area.Height / 10));
 
-                drawingContext.PushTransform(new TranslateTransform(model.PlayerPos.X, model.PlayerPos.Y));
+                drawingContext.PushTransform(new TranslateTransform(model.PlayerPos.X, model.PlayerPos.Y));                
                 drawingContext.DrawRectangle(ShipBrush, null, new Rect(area.Width / 2 - 25, area.Height / 10 + 50, 50, 50));
                 drawingContext.Pop();
 
