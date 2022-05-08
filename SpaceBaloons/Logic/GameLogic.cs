@@ -36,7 +36,7 @@ namespace SpaceBaloons.Logic
             for (int i = 0; i < 5; i++)
             {
                 int rt = r.Next(1, 7);
-                Baloons.Add(new Baloon(new System.Drawing.Point(r.Next(25, (int)area.Width - 25),25),2,rt,rt));
+                Baloons.Add(new Baloon(new System.Drawing.Point(r.Next(25, (int)area.Width - 25),25),5,rt,rt));
             }
         }
         public GameLogic()
@@ -47,7 +47,7 @@ namespace SpaceBaloons.Logic
         {
             if (player.CurrentHeat < 100)
             {
-                Lasers.Add(new Laser(PlayerPos, 10));
+                Lasers.Add(new Laser(PlayerPos, 20));
                 player.CurrentHeat += player.HeatGain;
             }
         }
@@ -56,10 +56,10 @@ namespace SpaceBaloons.Logic
             switch (controls)
             {
                 case Controls.Left:
-                    PlayerPos=new System.Drawing.Point(PlayerPos.X-5,PlayerPos.Y);
+                    PlayerPos=new System.Drawing.Point(PlayerPos.X-10,PlayerPos.Y);
                     break;
                 case Controls.Right:
-                    PlayerPos = new System.Drawing.Point(PlayerPos.X + 5, PlayerPos.Y);
+                    PlayerPos = new System.Drawing.Point(PlayerPos.X + 10, PlayerPos.Y);
                     break;
                 case Controls.Shoot:
                     NewShot();
