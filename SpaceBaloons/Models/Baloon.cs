@@ -12,10 +12,12 @@ namespace SpaceBaloons.Models
         public Point Pos { get; set; }
         public int Speed { get; set; }
         public int Health { get; set; }
-        public Baloon(Point pos, int speed, int health)
+        public int Type { get; set; }
+        public Baloon(Point pos, int speed,int type, int health)
         {
             Pos = pos;
             Speed = speed;
+            Type = type;
             Health = health;
         }
         public void Move()
@@ -28,7 +30,7 @@ namespace SpaceBaloons.Models
         
         public Baloon Pop()
         {
-            return new Baloon(Pos,Speed,Health-1);
+            return new Baloon(Pos,Speed,Type-1, Type-1);
         }
 
     }

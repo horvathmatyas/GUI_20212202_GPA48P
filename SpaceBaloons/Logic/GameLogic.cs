@@ -35,7 +35,8 @@ namespace SpaceBaloons.Logic
             PlayerPos = new System.Drawing.Point((int)area.Width / 2,(int)area.Height / 10 * 8);
             for (int i = 0; i < 5; i++)
             {
-                Baloons.Add(new Baloon(new System.Drawing.Point(r.Next(25, (int)area.Width - 25),25),2,r.Next(1,7)));
+                int rt = r.Next(1, 7);
+                Baloons.Add(new Baloon(new System.Drawing.Point(r.Next(25, (int)area.Width - 25),25),2,rt,rt));
             }
         }
         public GameLogic()
@@ -106,7 +107,7 @@ namespace SpaceBaloons.Logic
                     if (laserRect.IntersectsWith(baloonRect))
                     {
 
-                        if (Baloons[i].Health == 1)
+                        if (Baloons[i].Type == 1)
                         {
                             player.Score += Baloons[i].Health;
                             Baloons.RemoveAt(i);
@@ -115,10 +116,14 @@ namespace SpaceBaloons.Logic
                         }
                         else
                         {
-                            player.Score += Baloons[i].Health;
-                            Baloons.Add(Baloons[i].Pop());
-                            Baloons.RemoveAt(i);
+                            Baloons[i].Health -= 1; 
                             Lasers.RemoveAt(j);
+                            if (Baloons[i].Health == 0)
+                            {
+                                player.Score += Baloons[i].Type;
+                                Baloons.Add(Baloons[i].Pop());
+                                Baloons.RemoveAt(i);
+                            }
                         }
 
                     }
