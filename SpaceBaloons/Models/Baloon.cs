@@ -18,7 +18,7 @@ namespace SpaceBaloons.Models
             Speed = speed;
             Health = health;
         }
-        public void Move(Size size)
+        public void Move()
         {
             Point newPos = new System.Drawing.Point(Pos.X, Pos.Y+Speed);                       
             Pos = newPos;

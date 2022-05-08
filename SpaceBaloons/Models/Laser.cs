@@ -16,13 +16,11 @@ namespace SpaceBaloons.Models
             Pos = pos;
             Speed = speed;
         }
-        public void Move(Size size)
+        public void Move()
         {
-            Point newPos = new Point(Pos.X, Pos.Y + Speed);
-            if (InView(newPos,size))
-            {
-                Pos = newPos;
-            }
+            Point newPos = new Point(Pos.X, Pos.Y - Speed);
+            Pos = newPos;
+
         }
         public bool InView(Point pos, Size area)
         {

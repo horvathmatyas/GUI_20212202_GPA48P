@@ -27,7 +27,10 @@ namespace SpaceBaloons
         {
             InitializeComponent();
         }
-
+        private void Dt_Tick(object? sender, EventArgs e)
+        {
+            logic.TimeStep();
+        }
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Left)
@@ -51,10 +54,7 @@ namespace SpaceBaloons
                 logic.Control(GameLogic.Controls.Shoot);
             }
         }
-        private void Dt_Tick(object? sender, EventArgs e)
-        {
-            logic.TimeStep();
-        }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             logic = new GameLogic();

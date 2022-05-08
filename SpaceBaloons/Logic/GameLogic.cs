@@ -35,7 +35,7 @@ namespace SpaceBaloons.Logic
             PlayerPos = new System.Drawing.Point((int)area.Width / 2,(int)area.Height / 10 * 8);
             for (int i = 0; i < 5; i++)
             {
-                Baloons.Add(new Baloon(new System.Drawing.Point(r.Next(25, (int)area.Width - 25),25),10,r.Next(1,7)));
+                Baloons.Add(new Baloon(new System.Drawing.Point(r.Next(25, (int)area.Width - 25),25),2,r.Next(1,7)));
             }
         }
         public GameLogic()
@@ -46,7 +46,7 @@ namespace SpaceBaloons.Logic
         {
             if (player.CurrentHeat < 100)
             {
-                Lasers.Add(new Laser(PlayerPos, 20));
+                Lasers.Add(new Laser(PlayerPos, 10));
                 player.CurrentHeat += player.HeatGain;
             }
         }
@@ -55,10 +55,10 @@ namespace SpaceBaloons.Logic
             switch (controls)
             {
                 case Controls.Left:
-                    PlayerPos=new System.Drawing.Point(PlayerPos.X-1,PlayerPos.Y);
+                    PlayerPos=new System.Drawing.Point(PlayerPos.X-5,PlayerPos.Y);
                     break;
                 case Controls.Right:
-                    PlayerPos = new System.Drawing.Point(PlayerPos.X + 1, PlayerPos.Y);
+                    PlayerPos = new System.Drawing.Point(PlayerPos.X + 5, PlayerPos.Y);
                     break;
                 case Controls.Shoot:
                     NewShot();
@@ -72,6 +72,7 @@ namespace SpaceBaloons.Logic
         {
             for (int i = 0; i < Lasers.Count; i++)
             {
+                Lasers[i].Move();
                 bool isin = Lasers[i].InView(Lasers[i].Pos, new System.Drawing.Size((int)area.Width, (int)area.Height));
                 if (!isin)
                 {
@@ -81,12 +82,11 @@ namespace SpaceBaloons.Logic
 
             for (int i = 0; i < Baloons.Count; i++)
             {
+                Baloons[i].Move();
                 Rect baloonRect = new Rect(Baloons[i].Pos.X - 12, Baloons[i].Pos.Y - 12, 25, 25);
                 Rect shipRect = new Rect(0, area.Height / 10 * 9,area.Width, area.Height / 10);
                 if (baloonRect.IntersectsWith(shipRect))
                 {
-                    player.Health -= Baloons[i].Health;
-                    Baloons.RemoveAt(i);
                     if (player.Health > Baloons[i].Health)
                     {
                         player.Health -= Baloons[i].Health;
