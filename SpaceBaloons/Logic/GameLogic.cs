@@ -11,14 +11,15 @@ namespace SpaceBaloons.Logic
 {
     internal class GameLogic : Interface.GameModel
     {
+        public event EventHandler Changed;
+        public event EventHandler GameOver;
         public System.Drawing.Point PlayerPos { get ; set; }
         public List<Laser> Lasers { get; set; }
         public List<Baloon> Baloons { get; set; }
         public Player player { get; set; }
 
         static Random r = new Random();
-        public event EventHandler Changed;
-        public event EventHandler GameOver;
+
 
         System.Windows.Size area;
         public enum Controls
@@ -31,7 +32,11 @@ namespace SpaceBaloons.Logic
             Lasers=new List<Laser>();
             Baloons=new List<Baloon>();
             player = new Player(name);
-            PlayerPos = new System.Drawing.Point((int)area.Width / 2,(int)area.Height / 10 + 50);
+            PlayerPos = new System.Drawing.Point((int)area.Width / 2,(int)area.Height / 10 * 8);
+            for (int i = 0; i < 5; i++)
+            {
+                Baloons.Add(new Baloon(new System.Drawing.Point(r.Next(25, (int)area.Width - 25),25),10,r.Next(1,7)));
+            }
         }
         public GameLogic()
         {
@@ -41,7 +46,7 @@ namespace SpaceBaloons.Logic
         {
             if (player.CurrentHeat < 100)
             {
-                Lasers.Add(new Laser(PlayerPos, 5));
+                Lasers.Add(new Laser(PlayerPos, 20));
                 player.CurrentHeat += player.HeatGain;
             }
         }
@@ -77,7 +82,7 @@ namespace SpaceBaloons.Logic
             for (int i = 0; i < Baloons.Count; i++)
             {
                 Rect baloonRect = new Rect(Baloons[i].Pos.X - 12, Baloons[i].Pos.Y - 12, 25, 25);
-                Rect shipRect = new Rect(0, area.Height / 10,area.Width, area.Height / 10);
+                Rect shipRect = new Rect(0, area.Height / 10 * 9,area.Width, area.Height / 10);
                 if (baloonRect.IntersectsWith(shipRect))
                 {
                     player.Health -= Baloons[i].Health;
@@ -97,7 +102,7 @@ namespace SpaceBaloons.Logic
                 }
                 for (int j = 0; j < Lasers.Count; j++)
                 {
-                    Rect laserRect = new Rect(Lasers[i].Pos.X - 3, Lasers[i].Pos.Y - 5, 6, 10);
+                    Rect laserRect = new Rect(Lasers[j].Pos.X - 3, Lasers[j].Pos.Y - 5, 6, 10);
                     if (laserRect.IntersectsWith(baloonRect))
                     {
 

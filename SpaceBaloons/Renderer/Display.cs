@@ -108,7 +108,7 @@ namespace SpaceBaloons.Renderer
         {
             get
             {
-                return new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "lézer_piros.png"), UriKind.RelativeOrAbsolute)));
+                return new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "lézer_prios.png"), UriKind.RelativeOrAbsolute)));
             }
         }
         public Brush YellowLaserBrush
@@ -133,10 +133,10 @@ namespace SpaceBaloons.Renderer
             if (area.Width > 0 && area.Height > 0 && model != null)
             {
                 drawingContext.DrawRectangle(SpaceBrush, null, new Rect(0, 0, area.Width, area.Height));
-                drawingContext.DrawRectangle(Brushes.Red, null, new Rect(0, area.Height / 10, area.Width, area.Height / 10));
+                drawingContext.DrawRectangle(Brushes.Red, null, new Rect(0, area.Height / 10 * 9, area.Width, area.Height / 10));
 
                 drawingContext.PushTransform(new TranslateTransform(model.PlayerPos.X, model.PlayerPos.Y));                
-                drawingContext.DrawRectangle(ShipBrush, null, new Rect(area.Width / 2 - 25, area.Height / 10 + 50, 50, 50));
+                drawingContext.DrawRectangle(ShipBrush, null, new Rect(area.Width / 2 , area.Height / 10 * 8, 50, 50));
                 drawingContext.Pop();
 
                 foreach (var item in model.Lasers)

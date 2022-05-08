@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace SpaceBaloons
 {
@@ -50,13 +51,23 @@ namespace SpaceBaloons
                 logic.Control(GameLogic.Controls.Shoot);
             }
         }
-
+        private void Dt_Tick(object? sender, EventArgs e)
+        {
+            logic.TimeStep();
+        }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             logic = new GameLogic();
+            logic.GameOver += Logic_GameOver;
             display.SetupModel(logic);
+
+            DispatcherTimer dt = new DispatcherTimer();
+            dt.Interval = TimeSpan.FromMilliseconds(100);
+            dt.Tick += Dt_Tick;
+            dt.Start();
+
             logic.SetupGame(new Size(game_grid.ActualWidth, grid.ActualHeight), "xy");
-            display.SetupSizes(new Size(game_grid.ActualWidth,grid.ActualHeight));
+            display.SetupSizes(new Size(game_grid.ActualWidth, grid.ActualHeight));
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -65,6 +76,14 @@ namespace SpaceBaloons
             {
                 logic.SetupGame(new Size(game_grid.ActualWidth, grid.ActualHeight), "xy");
                 display.SetupSizes(new Size(game_grid.ActualWidth, grid.ActualHeight));
+            }
+        }
+        private void Logic_GameOver(object? sender, EventArgs e)
+        {
+            var result = MessageBox.Show("Game Over");
+            if (result == MessageBoxResult.OK)
+            {
+                this.Close();
             }
         }
     }
