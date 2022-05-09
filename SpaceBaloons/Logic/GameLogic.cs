@@ -17,8 +17,10 @@ namespace SpaceBaloons.Logic
         public List<Laser> Lasers { get; set; }
         public List<Baloon> Baloons { get; set; }
         public Player player { get; set; }
+        int spawnTimer=0; // a lufi spawnolasahoz kell
+        int waveNumber = 0; // hanyszor spawnolt wavet -- meglehet allapitani hol tart a jatek
 
-        static Random r = new Random();
+        static Random random = new Random();
 
 
         System.Windows.Size area;
@@ -33,11 +35,11 @@ namespace SpaceBaloons.Logic
             Baloons=new List<Baloon>();
             player = new Player(name);
             PlayerPos = new System.Drawing.Point((int)area.Width / 2,(int)area.Height / 10 * 8 + 50);
-            for (int i = 0; i < 5; i++)
-            {
-                int rt = r.Next(1, 7);
-                Baloons.Add(new Baloon(new System.Drawing.Point(r.Next(25, (int)area.Width - 25),25),5,rt,rt));
-            }
+            //for (int i = 0; i < 5; i++)
+            //{
+            //    int rt = r.Next(1, 7);
+            //    Baloons.Add(new Baloon(new System.Drawing.Point(r.Next(25, (int)area.Width - 25),25),5,rt,rt));
+            //}
         }
         public GameLogic()
         {
@@ -51,6 +53,33 @@ namespace SpaceBaloons.Logic
                 player.CurrentHeat += player.HeatGain;
             }
         }
+
+        private void newWave()
+        {
+            double i = waveNumber+2;
+            int j = 0;
+            while (j != (int)i)
+            {
+                int hp = 0;
+                if (i < 17 && i > 7)
+                {
+                    hp = random.Next((int)i - 7, 8);
+                }
+                else if (i <= 7)
+                {
+                    hp = random.Next(0, (int)i);
+                }
+                else
+                {
+                    hp = 7;
+
+                }
+                Baloons.Add(new Baloon(new System.Drawing.Point(random.Next(25, (int)area.Width - 25), 25), 5, hp, hp));
+                j++;
+            }
+            waveNumber++;
+        }
+
         public void Control(Controls controls)
         {
             switch (controls)
@@ -133,6 +162,12 @@ namespace SpaceBaloons.Logic
                 }
  
             }
+            if (spawnTimer==100)
+            {
+                newWave();
+                spawnTimer = 0;
+            }
+            spawnTimer ++;
             Changed?.Invoke(this, null);
         }
     }

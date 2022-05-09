@@ -62,7 +62,7 @@ namespace SpaceBaloons
             display.SetupModel(logic);
 
             DispatcherTimer dt = new DispatcherTimer();
-            dt.Interval = TimeSpan.FromMilliseconds(100);
+            dt.Interval = TimeSpan.FromMilliseconds(20);
             dt.Tick += Dt_Tick;
             dt.Start();
 
