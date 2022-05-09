@@ -135,28 +135,25 @@ namespace SpaceBaloons.Renderer
                 drawingContext.DrawRectangle(SpaceBrush, null, new Rect(0, 0, area.Width, area.Height));
                 drawingContext.DrawRectangle(Brushes.Red, null, new Rect(0, area.Height / 10 * 9, area.Width, area.Height / 10));
 
-                drawingContext.PushTransform(new TranslateTransform(model.PlayerPos.X, 0)); //nem tudom hogy kéne megoldani :(   
-                drawingContext.DrawRectangle(TurretBrush, null, new Rect(area.Width / 2 - 25, area.Height / 10 * 8, 50, 50));
-                drawingContext.Pop();
 
                 foreach (var item in model.Lasers)
                 {
                     int rn = r.Next(0, 4);
                     if (rn == 0)
                     {
-                        drawingContext.DrawEllipse(BlueLaserBrush, null, new Point(item.Pos.X, item.Pos.Y), 6, 10);
+                        drawingContext.DrawEllipse(BlueLaserBrush, null, new Point(item.Pos.X, item.Pos.Y), 8, 12);
                     }
                     else if (rn == 1)
                     {
-                        drawingContext.DrawEllipse(RedLaserBrush, null, new Point(item.Pos.X, item.Pos.Y), 6, 10);
+                        drawingContext.DrawEllipse(RedLaserBrush, null, new Point(item.Pos.X, item.Pos.Y), 8, 12);
                     }
                     else if (rn == 2)
                     {
-                        drawingContext.DrawEllipse(YellowLaserBrush, null, new Point(item.Pos.X, item.Pos.Y), 6, 10);
+                        drawingContext.DrawEllipse(YellowLaserBrush, null, new Point(item.Pos.X, item.Pos.Y), 8, 12);
                     }
                     else
                     {
-                        drawingContext.DrawEllipse(GreenLaserBrush, null, new Point(item.Pos.X, item.Pos.Y), 6, 10);
+                        drawingContext.DrawEllipse(GreenLaserBrush, null, new Point(item.Pos.X, item.Pos.Y), 8, 12);
                     }
 
                 }
@@ -164,30 +161,32 @@ namespace SpaceBaloons.Renderer
                 {
                     if (item.Type == 1)
                     {
-                        drawingContext.DrawEllipse(WhiteLoonBrush, null, new Point(item.Pos.X, item.Pos.Y), 25, 25);
+                        drawingContext.DrawEllipse(WhiteLoonBrush, null, new Point(item.Pos.X, item.Pos.Y), 40, 40);
 
                     }
                     else if (item.Type == 2)
                     {
-                        drawingContext.DrawEllipse(BlueLoonBrush, null, new Point(item.Pos.X, item.Pos.Y), 25, 25);
+                        drawingContext.DrawEllipse(BlueLoonBrush, null, new Point(item.Pos.X, item.Pos.Y), 40, 40);
                     }
                     else if (item.Type == 3)
                     {
-                        drawingContext.DrawEllipse(YellowLoonBrush, null, new Point(item.Pos.X, item.Pos.Y), 25, 25);
+                        drawingContext.DrawEllipse(YellowLoonBrush, null, new Point(item.Pos.X, item.Pos.Y), 40, 40);
                     }
                     else if (item.Type == 4)
                     {
-                        drawingContext.DrawEllipse(GreenLoonBrush, null, new Point(item.Pos.X, item.Pos.Y), 25, 25);
+                        drawingContext.DrawEllipse(GreenLoonBrush, null, new Point(item.Pos.X, item.Pos.Y), 40, 40);
                     }
                     else if (item.Type == 5)
                     {
-                        drawingContext.DrawEllipse(RedLoonBrush, null, new Point(item.Pos.X, item.Pos.Y), 25, 25);
+                        drawingContext.DrawEllipse(RedLoonBrush, null, new Point(item.Pos.X, item.Pos.Y), 40, 40);
                     }
                     else
                     {
-                        drawingContext.DrawEllipse(BlackLoonBrush, null, new Point(item.Pos.X, item.Pos.Y), 25, 25);
+                        drawingContext.DrawEllipse(BlackLoonBrush, null, new Point(item.Pos.X, item.Pos.Y), 40, 40);
                     }
                 }
+                drawingContext.DrawRectangle(TurretBrush, null, new Rect(area.Width / 2 - 50, area.Height / 10 * 8, 100, 100));
+
 
             }
         }

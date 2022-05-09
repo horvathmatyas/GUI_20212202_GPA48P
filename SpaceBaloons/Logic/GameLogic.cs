@@ -32,7 +32,7 @@ namespace SpaceBaloons.Logic
             Lasers=new List<Laser>();
             Baloons=new List<Baloon>();
             player = new Player(name);
-            PlayerPos = new System.Drawing.Point((int)area.Width / 2,(int)area.Height / 10 * 8);
+            PlayerPos = new System.Drawing.Point((int)area.Width / 2,(int)area.Height / 10 * 8 + 50);
             for (int i = 0; i < 5; i++)
             {
                 int rt = r.Next(1, 7);
@@ -84,7 +84,7 @@ namespace SpaceBaloons.Logic
             for (int i = 0; i < Baloons.Count; i++)
             {
                 Baloons[i].Move();
-                Rect baloonRect = new Rect(Baloons[i].Pos.X - 12, Baloons[i].Pos.Y - 12, 25, 25);
+                Rect baloonRect = new Rect(Baloons[i].Pos.X - 20, Baloons[i].Pos.Y - 20, 40, 40);
                 Rect shipRect = new Rect(0, area.Height / 10 * 9,area.Width, area.Height / 10);
                 if (baloonRect.IntersectsWith(shipRect))
                 {
@@ -103,7 +103,7 @@ namespace SpaceBaloons.Logic
                 }
                 for (int j = 0; j < Lasers.Count; j++)
                 {
-                    Rect laserRect = new Rect(Lasers[j].Pos.X - 3, Lasers[j].Pos.Y - 5, 6, 10);
+                    Rect laserRect = new Rect(Lasers[j].Pos.X - 4, Lasers[j].Pos.Y - 6, 8, 12);
                     if (laserRect.IntersectsWith(baloonRect))
                     {
 
