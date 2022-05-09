@@ -96,7 +96,10 @@ namespace SpaceBaloons.Logic
                     else
                     {
                         Baloons.RemoveAt(i);
-                        player.Highscore += player.Score;
+                        if (player.Score > player.Highscore)
+                        {
+                            player.Highscore = player.Score;
+                        }
                         GameOver?.Invoke(this, null);
 
                     }
