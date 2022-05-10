@@ -8,9 +8,7 @@
         mc:Ignorable="d"
         Title="SpaceBaloons" Height="450" Width="800" WindowState="Maximized" WindowStyle="None" KeyDown="Window_KeyDown" Loaded="Window_Loaded" SizeChanged="Window_SizeChanged">
     <Grid x:Name="grid">
-        
-        
-        
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*" x:Name="upgrades_grid"/>
             <ColumnDefinition Width="3*" x:Name="game_grid"/>
@@ -25,14 +23,13 @@
         </StackPanel>
         
         <renderer:Display x:Name="display" Grid.Column="1"/>
+
         <StackPanel Grid.Column="2">
             <Label Content="Player1"/>
             <Label Content="Player2"/>
             <Label Content="Player3"/>
             <Label Content="Player4"/>
         </StackPanel>
-        
-        
-        
+
     </Grid>
 </Window>
