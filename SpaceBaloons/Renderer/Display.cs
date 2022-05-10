@@ -139,6 +139,24 @@ namespace SpaceBaloons.Renderer
             base.OnRender(drawingContext);
             if (area.Width > 0 && area.Height > 0 && model != null)
             {
+                if (model.player.Level == 1)
+                {
+                    drawingContext.DrawRectangle(SpaceBrush, null, new Rect(0, 0, area.Width, area.Height));
+                    drawingContext.DrawRectangle(Brushes.Red, null, new Rect(0, area.Height / 10 * 9, area.Width, area.Height / 10));
+                }
+                else if (model.player.Level == 2)
+                {
+                    drawingContext.DrawRectangle(DesertBrush, null, new Rect(0, 0, area.Width, area.Height));
+                    drawingContext.DrawRectangle(Brushes.Green, null, new Rect(0, area.Height / 10 * 9, area.Width, area.Height / 10));
+
+                }
+                else if (model.player.Level == 3)
+                {
+                    drawingContext.DrawRectangle(PlanetBrush, null, new Rect(0, 0, area.Width, area.Height));
+                    drawingContext.DrawRectangle(Brushes.Brown, null, new Rect(0, area.Height / 10 * 9, area.Width, area.Height / 10));
+
+
+                }
                 drawingContext.DrawRectangle(SpaceBrush, null, new Rect(0, 0, area.Width, area.Height));
                 drawingContext.DrawRectangle(Brushes.Red, null, new Rect(0, area.Height / 10 * 9, area.Width, area.Height / 10));
                 drawingContext.DrawRectangle(TurretBrush, null, new Rect(model.PlayerPos.X-50,model.PlayerPos.Y ,100, 100));
