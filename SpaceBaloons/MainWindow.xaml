@@ -5,8 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SpaceBaloons"
         xmlns:renderer="clr-namespace:SpaceBaloons.Renderer"
+        xmlns:converter="clr-namespace:SpaceBaloons.Converter"
+        xmlns:logic="clr-namespace:SpaceBaloons.Logic"
         mc:Ignorable="d"
         Title="SpaceBaloons" Height="450" Width="800" WindowState="Maximized" WindowStyle="None" KeyDown="Window_KeyDown" Loaded="Window_Loaded" SizeChanged="Window_SizeChanged">
+
+    <Window.DataContext>
+        <logic:GameLogic/>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <converter:NumberToColorConverter x:Key="colorconvert" />
+    </Window.Resources>
+
     <Grid x:Name="grid">
 
         <Grid.ColumnDefinitions>
@@ -16,10 +27,10 @@
         </Grid.ColumnDefinitions>
         
         <StackPanel Grid.Column="0">
-            <Label Content="Stat1"/>
-            <Label Content="Stat2"/>
-            <Label Content="Stat3"/>
-            <Label Content="Stat4"/>
+            <Label Content="{Binding player.Health}" ContentStringFormat="Health: {0}" />
+            <ProgressBar Maximum="100" Margin="10" Value="{Binding player.Health}" Foreground="{Binding player.Health, Converter={StaticResource colorconvert}}" Height="10" />
+            <Label Content="{Binding player.CurrentHeat}" ContentStringFormat="Current Heat: {0}" />
+            <ProgressBar Maximum="100" Margin="10" Value="{Binding player.CurrentHeat}" Foreground="{Binding player.CurrentHeat, Converter={StaticResource colorconvert}}" Height="10" />
         </StackPanel>
         
         <renderer:Display x:Name="display" Grid.Column="1"/>
