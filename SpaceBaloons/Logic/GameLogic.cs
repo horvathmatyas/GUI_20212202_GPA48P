@@ -35,11 +35,7 @@ namespace SpaceBaloons.Logic
             Baloons=new List<Baloon>();
             player = new Player(name);
             PlayerPos = new System.Drawing.Point((int)area.Width / 2,(int)area.Height / 10 * 8 + 50);
-            //for (int i = 0; i < 5; i++)
-            //{
-            //    int rt = r.Next(1, 7);
-            //    Baloons.Add(new Baloon(new System.Drawing.Point(r.Next(25, (int)area.Width - 25),25),5,rt,rt));
-            //}
+            
         }
         public GameLogic()
         {
@@ -138,25 +134,32 @@ namespace SpaceBaloons.Logic
                     Rect laserRect = new Rect(Lasers[j].Pos.X - 4, Lasers[j].Pos.Y - 6, 8, 12);
                     if (laserRect.IntersectsWith(baloonRect))
                     {
-
-                        if (Baloons[i].Type == 1)
+                        if (Baloons[i] is null)
                         {
-                            player.Score += Baloons[i].Health;
-                            Baloons.RemoveAt(i);
-                            Lasers.RemoveAt(j);
 
                         }
                         else
                         {
-                            Baloons[i].Health -= 1; 
-                            Lasers.RemoveAt(j);
-                            if (Baloons[i].Health == 0)
+                            if (Baloons[i].Type == 1)
                             {
-                                player.Score += Baloons[i].Type;
-                                Baloons.Add(Baloons[i].Pop());
+                                player.Score += Baloons[i].Health;
                                 Baloons.RemoveAt(i);
+                                Lasers.RemoveAt(j);
+
+                            }
+                            else
+                            {
+                                Baloons[i].Health -= 1;
+                                Lasers.RemoveAt(j);
+                                if (Baloons[i].Health == 0)
+                                {
+                                    player.Score += Baloons[i].Type;
+                                    Baloons.Add(Baloons[i].Pop());
+                                    Baloons.RemoveAt(i);
+                                }
                             }
                         }
+                        
 
                     }
                 }

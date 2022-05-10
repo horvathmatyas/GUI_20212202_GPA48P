@@ -39,7 +39,7 @@ namespace SpaceBaloons
             }
             else if (e.Key == Key.A)
             {
-                logic.Control(GameLogic.Controls.Right);
+                logic.Control(GameLogic.Controls.Left);
             }
             else if (e.Key == Key.Right)
             {
@@ -62,7 +62,7 @@ namespace SpaceBaloons
             display.SetupModel(logic);
 
             DispatcherTimer dt = new DispatcherTimer();
-            dt.Interval = TimeSpan.FromMilliseconds(20);
+            dt.Interval = TimeSpan.FromMilliseconds(40);
             dt.Tick += Dt_Tick;
             dt.Start();
 

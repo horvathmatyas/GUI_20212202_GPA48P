@@ -186,8 +186,6 @@ namespace SpaceBaloons.Renderer
                     }
                 }
                 drawingContext.DrawRectangle(TurretBrush, null, new Rect(area.Width / 2 - 50, area.Height / 10 * 8, 100, 100));
-
-
             }
         }
     }
