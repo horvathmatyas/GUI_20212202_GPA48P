@@ -17,6 +17,7 @@ namespace SpaceBaloons.Models
             Pos = pos;
             Speed = speed;
             Health = health;
+
         }
         public void Move()
         {
