@@ -18,6 +18,8 @@ namespace SpaceBaloons.Models
         public double CurrentHeat { get; set; } //the current heat of the turret (max at 100)
         public int Health { get; set; }
 
+        public int Level { get; set; }
+
         public Player(string name)
         {
             Name = name;
@@ -28,6 +30,7 @@ namespace SpaceBaloons.Models
             HeatGain = 1;
             CurrentHeat = 0;
             Health = 100;
+            Level = 1;
         }
         public bool InView(Point pos)
         {
