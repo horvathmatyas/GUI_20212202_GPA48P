@@ -117,5 +117,20 @@ namespace SpaceBaloons
                 goingRight = false;
             }
         }
+
+        private void Reduce_Heat(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Increase_Attack_Speed(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Reduce_Cooldown(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
