@@ -61,20 +61,20 @@ namespace SpaceBaloons.Logic
             while (j != (int)i)
             {
                 int hp = 0;
-                if (i < 17 && i > 7)
+                if (i < 17 && i > 6)
                 {
-                    hp = random.Next((int)i - 7, 8);
+                    hp = random.Next((int)i - 7, 7);
                 }
-                else if (i <= 7)
+                else if (i <= 6)
                 {
                     hp = random.Next(0, (int)i);
                 }
                 else
                 {
-                    hp = 7;
+                    hp = 6;
 
                 }
-                Baloons.Add(new Baloon(new System.Drawing.Point(random.Next(25, (int)area.Width - 25), 25), 5, hp, hp));
+                Baloons.Add(new Baloon(new System.Drawing.Point(random.Next(25, (int)area.Width - 25), 25), 2, hp, hp));
                 j++;
             }
             waveNumber++;
@@ -141,14 +141,14 @@ namespace SpaceBaloons.Logic
 
                         if (Baloons[i].Type == 1)
                         {
-                            player.Score += Baloons[i].Health;
+                            player.Score += 1;
                             Baloons.RemoveAt(i);
                             Lasers.RemoveAt(j);
 
                         }
                         else
                         {
-                            Baloons[i].Health -= 1; 
+                            Baloons[i].Health -= 1;
                             Lasers.RemoveAt(j);
                             if (Baloons[i].Health == 0)
                             {
