@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SpaceBaloons"
         xmlns:renderer="clr-namespace:SpaceBaloons.Renderer"
         mc:Ignorable="d"
-        Title="SpaceBaloons" Height="450" Width="800" WindowState="Maximized" WindowStyle="None" KeyDown="Window_KeyDown" Loaded="Window_Loaded" SizeChanged="Window_SizeChanged">
+        Title="SpaceBaloons" Height="450" Width="800" WindowState="Maximized" WindowStyle="None" KeyDown="Window_KeyDown" KeyUp="Window_KeyUp" Loaded="Window_Loaded" SizeChanged="Window_SizeChanged">
     <Grid x:Name="grid">
         
         
