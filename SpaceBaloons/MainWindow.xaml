@@ -25,21 +25,38 @@
             <ColumnDefinition Width="3*" x:Name="game_grid"/>
             <ColumnDefinition Width="2*" x:Name="scores_grid"/>
         </Grid.ColumnDefinitions>
-        
-        <StackPanel Grid.Column="0">
-            <Label Content="{Binding player.Health}" ContentStringFormat="Health: {0}" />
-            <ProgressBar Maximum="100" Margin="10" Value="{Binding player.Health}" Foreground="{Binding player.Health, Converter={StaticResource colorconvert}}" Height="10" />
-            <Label Content="{Binding player.CurrentHeat}" ContentStringFormat="Current Heat: {0}" />
-            <ProgressBar Maximum="100" Margin="10" Value="{Binding player.CurrentHeat}" Foreground="{Binding player.CurrentHeat, Converter={StaticResource colorconvert}}" Height="10" />
+
+        <StackPanel Grid.Column="0" Orientation="Vertical" Background="LightGray">
+            <Label Content="Score" Margin="0,0,0,0" Padding="10" FontSize="15" FontWeight="Black"/>
+            <Label Content="{Binding player.Score}" Margin="0,0,0,0" Padding="10" FontSize="15" FontWeight="Black"/>
+            <Label Content="Health" Margin="0,0,0,0" Padding="10" FontSize="15" FontWeight="Black"/>
+            <ProgressBar Maximum="100" Margin="10,0,10,0" Value="{Binding player.Health}" Foreground="{Binding player.Health, Converter={StaticResource colorconvert}}" Height="25" />
+            <Label Content="Current Heath" Margin="0,0,0,0" Padding="10" FontSize="15" FontWeight="Black"/>
+            <ProgressBar Maximum="100" Margin="10,0,10,0" Value="{Binding player.CurrentHeat}" Foreground="{Binding player.CurrentHeat, Converter={StaticResource colorconvert}}" Height="25" />
+            <DockPanel Margin="0,10,0,0">
+                <Label DockPanel.Dock="Left" Content="Reduce Heat:"  Padding="10" FontSize="15" FontWeight="Black"></Label>
+                <Button DockPanel.Dock="Right" Click="Reduce_Heat" HorizontalAlignment="Right" Content="-" FontSize="15" FontWeight="Black" Height="30" Width="30" Margin="0,0,10,0"></Button>
+            </DockPanel>
+            <DockPanel Margin="0,0,0,0">
+                <Label DockPanel.Dock="Left" Content="Increase Attack Speed:"  Padding="10" FontSize="15" FontWeight="Black"></Label>
+                <Button DockPanel.Dock="Right" Click="Increase_Attack_Speed" HorizontalAlignment="Right" Content="+" FontSize="15" FontWeight="Black" Height="30" Width="30" Margin="0,0,10,0"></Button>
+            </DockPanel>
+            <DockPanel Margin="0,0,0,0">
+                <Label DockPanel.Dock="Left" Content="Reduce Cooldown:"  Padding="10" FontSize="15" FontWeight="Black"></Label>
+                <Button DockPanel.Dock="Right" Click="Reduce_Cooldown" HorizontalAlignment="Right" Content="-" FontSize="15" FontWeight="Black" Height="30" Width="30" Margin="0,0,10,0"></Button>
+            </DockPanel>
         </StackPanel>
         
         <renderer:Display x:Name="display" Grid.Column="1"/>
 
-        <StackPanel Grid.Column="2">
-            <Label Content="Player1"/>
-            <Label Content="Player2"/>
-            <Label Content="Player3"/>
-            <Label Content="Player4"/>
+        <StackPanel Grid.Column="2" Orientation="Vertical" Background="LightGray">
+            <Border BorderThickness="0,0,0,3" BorderBrush="Black" Margin="0,10">
+                <Label Content="High Score List" HorizontalAlignment="Center" FontSize="25" FontWeight="Bold" Margin="0,0,0,15"/>
+            </Border>
+            <DockPanel Margin="0,0,0,0">
+                <Label DockPanel.Dock="Left" Content="BindingName"  FontSize="22"></Label>
+                <Label Content="9999" DockPanel.Dock="Right" FontSize="22" HorizontalAlignment="Right"></Label>
+            </DockPanel>
         </StackPanel>
 
     </Grid>
