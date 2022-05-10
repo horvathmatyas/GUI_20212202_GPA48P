@@ -19,7 +19,7 @@ namespace SpaceBaloons.Logic
         public Player player { get; set; }
         int spawnTimer=0; // a lufi spawnolasahoz kell
         int waveNumber = 0; // hanyszor spawnolt wavet -- meglehet allapitani hol tart a jatek
-
+        public int shootTimer = 0;
         static Random random = new Random();
 
 
@@ -35,11 +35,7 @@ namespace SpaceBaloons.Logic
             Baloons=new List<Baloon>();
             player = new Player(name);
             PlayerPos = new System.Drawing.Point((int)area.Width / 2,(int)area.Height / 10 * 8 + 50);
-            //for (int i = 0; i < 5; i++)
-            //{
-            //    int rt = r.Next(1, 7);
-            //    Baloons.Add(new Baloon(new System.Drawing.Point(r.Next(25, (int)area.Width - 25),25),5,rt,rt));
-            //}
+            
         }
         public GameLogic()
         {
@@ -47,11 +43,17 @@ namespace SpaceBaloons.Logic
         }
         public void NewShot()
         {
-            if (player.CurrentHeat < 100)
+            if (player.AttackSpeed < shootTimer && player.CurrentHeat < 100)
             {
-                Lasers.Add(new Laser(PlayerPos, 20));
+                Lasers.Add(new Laser(PlayerPos, 30));
                 player.CurrentHeat += player.HeatGain;
+                shootTimer = 0;
             }
+            //if (player.CurrentHeat < 100)
+            //{
+            //    Lasers.Add(new Laser(PlayerPos, 30));
+            //    player.CurrentHeat += player.HeatGain;
+            //}
         }
 
         private void newWave()
@@ -82,13 +84,14 @@ namespace SpaceBaloons.Logic
 
         public void Control(Controls controls)
         {
+            System.Drawing.Point newPos = new System.Drawing.Point();
             switch (controls)
             {
                 case Controls.Left:
-                    PlayerPos=new System.Drawing.Point(PlayerPos.X-10,PlayerPos.Y);
+                    newPos=new System.Drawing.Point(PlayerPos.X-15,PlayerPos.Y);
                     break;
                 case Controls.Right:
-                    PlayerPos = new System.Drawing.Point(PlayerPos.X + 10, PlayerPos.Y);
+                    newPos = new System.Drawing.Point(PlayerPos.X + 15, PlayerPos.Y);
                     break;
                 case Controls.Shoot:
                     NewShot();
@@ -96,19 +99,23 @@ namespace SpaceBaloons.Logic
                 default:
                     break;
             }
+            if (player.InView(newPos)) //20
+            {
+                PlayerPos = newPos;
+            }
             Changed?.Invoke(this, null);
         }
         public void TimeStep()
         {
-            for (int i = 0; i < Lasers.Count; i++)
-            {
-                Lasers[i].Move();
-                bool isin = Lasers[i].InView(Lasers[i].Pos, new System.Drawing.Size((int)area.Width, (int)area.Height));
-                if (!isin)
-                {
-                    Lasers.RemoveAt(i);
-                }
-            }
+            //for (int i = 0; i < Lasers.Count; i++)
+            //{
+            //    Lasers[j].Move();
+            //    bool isin = Lasers[i].InView(Lasers[i].Pos, new System.Drawing.Size((int)area.Width, (int)area.Height));
+            //    if (!isin)
+            //    {
+            //        Lasers.RemoveAt(i);
+            //    }
+            //}
 
             for (int i = 0; i < Baloons.Count; i++)
             {
@@ -135,39 +142,46 @@ namespace SpaceBaloons.Logic
                 }
                 for (int j = 0; j < Lasers.Count; j++)
                 {
-                    Rect laserRect = new Rect(Lasers[j].Pos.X - 4, Lasers[j].Pos.Y - 6, 8, 12);
-                    if (laserRect.IntersectsWith(baloonRect))
+                    Lasers[j].Move();
+                    bool isin = Lasers[j].InView(Lasers[j].Pos, new System.Drawing.Size((int)area.Width, (int)area.Height));
+                    if (!isin)
                     {
-
-                        if (Baloons[i].Type == 1)
-                        {
-                            player.Score += 1;
-                            Baloons.RemoveAt(i);
-                            Lasers.RemoveAt(j);
-
-                        }
-                        else
-                        {
-                            Baloons[i].Health -= 1;
-                            Lasers.RemoveAt(j);
-                            if (Baloons[i].Health == 0)
-                            {
-                                player.Score += Baloons[i].Type;
-                                Baloons.Add(Baloons[i].Pop());
-                                Baloons.RemoveAt(i);
-                            }
-                        }
-
+                        Lasers.RemoveAt(j);
                     }
+                    else
+                    {
+                        Rect laserRect = new Rect(Lasers[j].Pos.X - 4, Lasers[j].Pos.Y - 6, 8, 12);
+                        if (laserRect.IntersectsWith(baloonRect))
+                        {
+                                if (Baloons[i].Health == 1)
+                                {
+                                    player.Score += Baloons[i].Health;
+                                    Baloons.RemoveAt(i);
+                                    Lasers.RemoveAt(j);
+                                }
+                                else
+                                {
+                                    Baloons.Add(Baloons[i].Pop());
+                                    Baloons.RemoveAt(i);
+                                    Lasers.RemoveAt(j); 
+                                    player.Score += Baloons[i].Type;                          
+                                }
+
+
+                        }
+                    }
+                    
                 }
  
             }
             if (spawnTimer==100)
             {
                 newWave();
+                Baloons.Add(new Baloon(new System.Drawing.Point(random.Next(25, (int)area.Width - 25), 25), 5, 6, 6));
                 spawnTimer = 0;
             }
             spawnTimer ++;
+            shootTimer++;
             Changed?.Invoke(this, null);
         }
     }

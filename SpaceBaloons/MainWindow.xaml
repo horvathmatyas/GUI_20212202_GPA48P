@@ -8,8 +8,8 @@
         xmlns:converter="clr-namespace:SpaceBaloons.Converter"
         xmlns:logic="clr-namespace:SpaceBaloons.Logic"
         mc:Ignorable="d"
-        Title="SpaceBaloons" Height="450" Width="800" WindowState="Maximized" WindowStyle="None" KeyDown="Window_KeyDown" Loaded="Window_Loaded" SizeChanged="Window_SizeChanged">
-
+        Title="SpaceBaloons" Height="450" Width="800" WindowState="Maximized" WindowStyle="None" KeyDown="Window_KeyDown" KeyUp="Window_KeyUp" Loaded="Window_Loaded" SizeChanged="Window_SizeChanged">
+   
     <Window.DataContext>
         <logic:GameLogic/>
     </Window.DataContext>
@@ -17,7 +17,7 @@
     <Window.Resources>
         <converter:NumberToColorConverter x:Key="colorconvert" />
     </Window.Resources>
-
+     
     <Grid x:Name="grid">
 
         <Grid.ColumnDefinitions>

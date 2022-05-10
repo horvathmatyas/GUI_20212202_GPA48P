@@ -126,6 +126,13 @@ namespace SpaceBaloons.Renderer
             }
         }
 
+        public Pen debugPen
+        {
+            get
+            {
+                return new Pen(Brushes.Red,2);
+            }
+        }
 
         protected override void OnRender(DrawingContext drawingContext)
         {
@@ -134,27 +141,28 @@ namespace SpaceBaloons.Renderer
             {
                 drawingContext.DrawRectangle(SpaceBrush, null, new Rect(0, 0, area.Width, area.Height));
                 drawingContext.DrawRectangle(Brushes.Red, null, new Rect(0, area.Height / 10 * 9, area.Width, area.Height / 10));
-
+                drawingContext.DrawRectangle(TurretBrush, null, new Rect(model.PlayerPos.X-50,model.PlayerPos.Y ,100, 100));
 
                 foreach (var item in model.Lasers)
                 {
-                    int rn = r.Next(0, 4);
-                    if (rn == 0)
-                    {
-                        drawingContext.DrawEllipse(BlueLaserBrush, null, new Point(item.Pos.X, item.Pos.Y), 8, 12);
-                    }
-                    else if (rn == 1)
-                    {
-                        drawingContext.DrawEllipse(RedLaserBrush, null, new Point(item.Pos.X, item.Pos.Y), 8, 12);
-                    }
-                    else if (rn == 2)
-                    {
-                        drawingContext.DrawEllipse(YellowLaserBrush, null, new Point(item.Pos.X, item.Pos.Y), 8, 12);
-                    }
-                    else
-                    {
-                        drawingContext.DrawEllipse(GreenLaserBrush, null, new Point(item.Pos.X, item.Pos.Y), 8, 12);
-                    }
+                    drawingContext.DrawEllipse(RedLaserBrush, null, new Point(item.Pos.X, item.Pos.Y), 10, 12);
+                    //int rn = r.Next(0, 4);
+                    //if (rn == 0)
+                    //{
+                    //    drawingContext.DrawEllipse(BlueLaserBrush, null, new Point(item.Pos.X, item.Pos.Y), 10, 12);
+                    //}
+                    //else if (rn == 1)
+                    //{
+                    //    drawingContext.DrawEllipse(RedLaserBrush, null, new Point(item.Pos.X, item.Pos.Y), 10, 12);
+                    //}
+                    //else if (rn == 2)
+                    //{
+                    //    drawingContext.DrawEllipse(YellowLaserBrush, null, new Point(item.Pos.X, item.Pos.Y), 10, 12);
+                    //}
+                    //else
+                    //{
+                    //    drawingContext.DrawEllipse(GreenLaserBrush, null, new Point(item.Pos.X, item.Pos.Y), 10, 12);
+                    //}
 
                 }
                 foreach (var item in model.Baloons)
@@ -185,7 +193,7 @@ namespace SpaceBaloons.Renderer
                         drawingContext.DrawEllipse(BlackLoonBrush, null, new Point(item.Pos.X, item.Pos.Y), 40, 40);
                     }
                 }
-                drawingContext.DrawRectangle(TurretBrush, null, new Rect(area.Width / 2 - 50, area.Height / 10 * 8, 100, 100));
+               
 
 
             }
