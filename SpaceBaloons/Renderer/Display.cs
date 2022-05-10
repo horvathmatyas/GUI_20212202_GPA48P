@@ -167,24 +167,24 @@ namespace SpaceBaloons.Renderer
                 }
                 foreach (var item in model.Baloons)
                 {
-                    if (item.Type == 1)
+                    if (item.Health == 1)
                     {
                         drawingContext.DrawEllipse(WhiteLoonBrush, null, new Point(item.Pos.X, item.Pos.Y), 40, 40);
 
                     }
-                    else if (item.Type == 2)
+                    else if (item.Health == 2)
                     {
                         drawingContext.DrawEllipse(BlueLoonBrush, null, new Point(item.Pos.X, item.Pos.Y), 40, 40);
                     }
-                    else if (item.Type == 3)
+                    else if (item.Health == 3)
                     {
                         drawingContext.DrawEllipse(YellowLoonBrush, null, new Point(item.Pos.X, item.Pos.Y), 40, 40);
                     }
-                    else if (item.Type == 4)
+                    else if (item.Health == 4)
                     {
                         drawingContext.DrawEllipse(GreenLoonBrush, null, new Point(item.Pos.X, item.Pos.Y), 40, 40);
                     }
-                    else if (item.Type == 5)
+                    else if (item.Health == 5)
                     {
                         drawingContext.DrawEllipse(RedLoonBrush, null, new Point(item.Pos.X, item.Pos.Y), 40, 40);
                     }
