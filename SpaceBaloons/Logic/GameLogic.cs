@@ -166,8 +166,6 @@ namespace SpaceBaloons.Logic
                                     Lasers.RemoveAt(j); 
                                     player.Score += Baloons[i].Type;                          
                                 }
-
-
                         }
                     }
                     
