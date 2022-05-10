@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jooda\\Source\\Repos\\feleves3\\GUI_20212202_GPA48P\\SpaceBaloons\\SpaceBaloons.csproj",
+      "projectUniqueName": "C:\\Users\\jooda\\Source\\Repos\\GUI_20212202_GPA48P\\SpaceBaloons\\SpaceBaloons.csproj",
       "projectName": "SpaceBaloons",
-      "projectPath": "C:\\Users\\jooda\\Source\\Repos\\feleves3\\GUI_20212202_GPA48P\\SpaceBaloons\\SpaceBaloons.csproj",
+      "projectPath": "C:\\Users\\jooda\\Source\\Repos\\GUI_20212202_GPA48P\\SpaceBaloons\\SpaceBaloons.csproj",
       "packagesPath": "C:\\Users\\jooda\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jooda\\Source\\Repos\\feleves3\\GUI_20212202_GPA48P\\SpaceBaloons\\obj\\",
+      "outputPath": "C:\\Users\\jooda\\Source\\Repos\\GUI_20212202_GPA48P\\SpaceBaloons\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\jooda\\AppData\\Roaming\\NuGet\\NuGet.Config",
