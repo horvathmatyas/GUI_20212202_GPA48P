@@ -23,8 +23,7 @@ namespace SpaceBaloons.Models
         public void Move()
         {
             Point newPos = new System.Drawing.Point(Pos.X, Pos.Y+Speed);                       
-            Pos = newPos;
-            
+            Pos = newPos;            
         }
  
         

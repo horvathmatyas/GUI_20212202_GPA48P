@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,13 +23,22 @@ namespace SpaceBaloons.Models
             Name = name;
             Score = 0;
             Highscore = 0;
-            AttackSpeed = 1;
+            AttackSpeed = 4;
             Cooldown = 1;
             HeatGain = 1;
             CurrentHeat = 0;
             Health = 100;
         }
-
+        public bool InView(Point pos)
+        {
+            if (pos.X >= 20 &&
+                pos.X <= 802
+                )
+            {
+                return true;
+            }
+            return false;
+        }
         public Player LoadPlayer(string name, int score,int hs, int attackSpeed, int cooldown, double heatGain, double currentHeat, int health) //needed to load player stats
         {
             return new Player(name)

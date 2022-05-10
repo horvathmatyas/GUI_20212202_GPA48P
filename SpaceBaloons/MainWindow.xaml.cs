@@ -23,36 +23,43 @@ namespace SpaceBaloons
     public partial class MainWindow : Window
     {
         GameLogic logic;
+        bool fireIng=false;
+        bool goingLeft = false;
+        bool goingRight = false;
         public MainWindow()
         {
             InitializeComponent();
         }
         private void Dt_Tick(object? sender, EventArgs e)
-        {
+        {           
+            if (fireIng)
+            {
+                logic.Control(GameLogic.Controls.Shoot);
+            }
+            if (goingRight)
+            {
+                logic.Control(GameLogic.Controls.Right);
+            }
+            if (goingLeft)
+            {
+                logic.Control(GameLogic.Controls.Left);
+            }
             logic.TimeStep();
         }
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Left)
+            if (e.Key == Key.Left || e.Key == Key.A)
             {
-                logic.Control(GameLogic.Controls.Left);
+                goingLeft = true;
             }
-            else if (e.Key == Key.A)
+            if (e.Key == Key.Right || e.Key == Key.D)
+            {              
+                goingRight = true;
+            }
+            if (e.Key == Key.Space)
             {
-                logic.Control(GameLogic.Controls.Right);
-            }
-            else if (e.Key == Key.Right)
-            {
-                logic.Control(GameLogic.Controls.Right);
-            }
-            else if (e.Key == Key.D)
-            {
-                logic.Control(GameLogic.Controls.Right);
-            }
-            else if (e.Key == Key.Space)
-            {
-                logic.Control(GameLogic.Controls.Shoot);
-            }
+                fireIng = true;              
+            }   
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -62,7 +69,7 @@ namespace SpaceBaloons
             display.SetupModel(logic);
 
             DispatcherTimer dt = new DispatcherTimer();
-            dt.Interval = TimeSpan.FromMilliseconds(20);
+            dt.Interval = TimeSpan.FromMilliseconds(30);
             dt.Tick += Dt_Tick;
             dt.Start();
 
@@ -84,6 +91,30 @@ namespace SpaceBaloons
             if (result == MessageBoxResult.OK)
             {
                 this.Close();
+            }
+        }
+
+        private void Window_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space)
+            {
+                fireIng = false;
+            }
+            if (e.Key == Key.Left)
+            {
+                goingLeft = false;
+            }
+            if (e.Key == Key.A)
+            {
+                goingLeft = false;
+            }
+            if (e.Key == Key.Right)
+            {
+                goingRight = false;
+            }
+            if (e.Key == Key.D)
+            {
+                goingRight = false;
             }
         }
     }
