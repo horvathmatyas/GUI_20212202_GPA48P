@@ -188,7 +188,7 @@ namespace SpaceBaloons.Renderer
                     {
                         drawingContext.DrawEllipse(RedLoonBrush, null, new Point(item.Pos.X, item.Pos.Y), 40, 40);
                     }
-                    else
+                    else if (item.Health == 6)
                     {
                         drawingContext.DrawEllipse(BlackLoonBrush, null, new Point(item.Pos.X, item.Pos.Y), 40, 40);
                     }
