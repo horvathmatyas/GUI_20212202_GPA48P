@@ -26,10 +26,12 @@ namespace SpaceBaloons
         bool fireIng=false;
         bool goingLeft = false;
         bool goingRight = false;
+
         public MainWindow()
         {
             InitializeComponent();
         }
+
         private void Dt_Tick(object? sender, EventArgs e)
         {           
             if (fireIng)
@@ -46,6 +48,7 @@ namespace SpaceBaloons
             }
             logic.TimeStep();
         }
+
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Left || e.Key == Key.A)
@@ -85,6 +88,7 @@ namespace SpaceBaloons
                 display.SetupSizes(new Size(game_grid.ActualWidth, grid.ActualHeight));
             }
         }
+
         private void Logic_GameOver(object? sender, EventArgs e)
         {
             var result = MessageBox.Show("Game Over");
@@ -120,17 +124,17 @@ namespace SpaceBaloons
 
         private void Reduce_Heat(object sender, RoutedEventArgs e)
         {
-
+            logic.player.CurrentHeat -= 0.1;
         }
 
         private void Increase_Attack_Speed(object sender, RoutedEventArgs e)
         {
-
+            logic.player.AttackSpeed += 1;
         }
 
         private void Reduce_Cooldown(object sender, RoutedEventArgs e)
         {
-
+            logic.player.Cooldown -= 1;
         }
     }
 }
