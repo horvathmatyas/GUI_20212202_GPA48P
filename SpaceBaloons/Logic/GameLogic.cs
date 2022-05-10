@@ -75,6 +75,21 @@ namespace SpaceBaloons.Logic
                 j++;
             }
             waveNumber++;
+            if (waveNumber == 51 && player.Level == 1)
+            {
+                player.Level++;
+                waveNumber = 0;
+            }
+            else if (waveNumber == 101 && player.Level == 2)
+            {
+                player.Level++;
+                waveNumber = 0;
+            }
+            //else if (waveNumber == ?? && player.Level == 3)
+            //{
+
+            //}
+            //Végtelen wave?
         }
 
         public void Control(Controls controls)
