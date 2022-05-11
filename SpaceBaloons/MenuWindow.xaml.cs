@@ -28,6 +28,7 @@ namespace SpaceBaloons
         {
             MainWindow win = new MainWindow(tb.Text);
             win.ShowDialog();
+            this.Close();
         }
     }
 }

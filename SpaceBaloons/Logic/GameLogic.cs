@@ -67,7 +67,7 @@ namespace SpaceBaloons.Logic
         }
         public GameLogic()
         {
-            GameOver += PlayerReset;
+
         }
         public void NewShot()
         {
@@ -230,10 +230,7 @@ namespace SpaceBaloons.Logic
             Changed?.Invoke(this, null);
             
         }
-        public void PlayerReset(object? sender, EventArgs e)
-        {
-            player = null;
-        }
+        
         
     }
 }

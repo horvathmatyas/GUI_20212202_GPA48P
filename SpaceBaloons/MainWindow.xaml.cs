@@ -151,9 +151,7 @@ namespace SpaceBaloons
             var result = MessageBox.Show("Game Over");
             if (result == MessageBoxResult.OK)
             {
-                name = null;
-                this.Close();
-                
+                this.Close();                
             }
         }
 
@@ -192,7 +190,5 @@ namespace SpaceBaloons
                 RC = false;
             }
         }
-
-
     }
 }
