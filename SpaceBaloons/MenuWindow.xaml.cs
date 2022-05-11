@@ -26,8 +26,7 @@ namespace SpaceBaloons
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow win = new MainWindow();
-            win.logic.player.Name = tb.Text;
+            MainWindow win = new MainWindow(tb.Text);
             win.ShowDialog();
         }
     }

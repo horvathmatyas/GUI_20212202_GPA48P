@@ -26,9 +26,10 @@ namespace SpaceBaloons
         bool fireIng=false;
         bool goingLeft = false;
         bool goingRight = false;
-
-        public MainWindow()
+        string name;
+        public MainWindow(string name)
         {
+            this.name = name;
             InitializeComponent();
         }
 
@@ -76,7 +77,7 @@ namespace SpaceBaloons
             dt.Tick += Dt_Tick;
             dt.Start();
 
-            logic.SetupGame(new Size(game_grid.ActualWidth, grid.ActualHeight), "xy");
+            logic.SetupGame(new Size(game_grid.ActualWidth, grid.ActualHeight), name);
             display.SetupSizes(new Size(game_grid.ActualWidth, grid.ActualHeight));
         }
 
@@ -84,7 +85,7 @@ namespace SpaceBaloons
         {
             if (logic != null)
             {
-                logic.SetupGame(new Size(game_grid.ActualWidth, grid.ActualHeight), "xy");
+                logic.SetupGame(new Size(game_grid.ActualWidth, grid.ActualHeight), name);
                 display.SetupSizes(new Size(game_grid.ActualWidth, grid.ActualHeight));
             }
         }
