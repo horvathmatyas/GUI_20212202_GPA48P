@@ -26,9 +26,19 @@ namespace SpaceBaloons
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+
             MainWindow win = new MainWindow(tb.Text);
             win.ShowDialog();
-            this.Close();
+            //this.Close();
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key==Key.Enter)
+            {
+                MainWindow win = new MainWindow(tb.Text);
+                win.ShowDialog();
+            }
         }
     }
 }

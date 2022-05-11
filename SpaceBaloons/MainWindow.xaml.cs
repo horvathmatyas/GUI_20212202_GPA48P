@@ -30,12 +30,20 @@ namespace SpaceBaloons
         bool RH = false;
         bool IA = false;
         bool RC = false;
-        string name;
+        public string name { get; set; }
 
         public NumberToColorConverter cv = new NumberToColorConverter();
         public MainWindow(string name)
         {
-            this.name = name;
+            if (logic!=null)
+            {
+                name = logic.player.Name;
+            }
+            else
+            {
+                this.name = name; //itt visszaall a nev a regire valamiert
+            }
+            
             InitializeComponent();
         }
 

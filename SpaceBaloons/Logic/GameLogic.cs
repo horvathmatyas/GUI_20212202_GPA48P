@@ -6,11 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.IO;
 
 namespace SpaceBaloons.Logic
 {
     internal class GameLogic : Interface.GameModel
     {
+        List<Player> highscores;
         public event EventHandler Changed;
         public event EventHandler GameOver;
         public event EventHandler NextLevel;
@@ -160,10 +164,7 @@ namespace SpaceBaloons.Logic
                     player.CurrentHeat -= player.Cooldown;
                 }
             }
-            //if (cdTime > player.Cooldown)
-            //{
-            //    player.CurrentHeat -= 2;
-            //}
+            
             for (int i = 0; i < Lasers.Count; i++)
             {
                 Lasers[i].Move();
@@ -177,7 +178,7 @@ namespace SpaceBaloons.Logic
             for (int i = 0; i < Baloons.Count; i++)
             {
                 Baloons[i].Move();
-                Rect baloonRect = new Rect(Baloons[i].Pos.X - 20, Baloons[i].Pos.Y - 20, 40, 40);
+                Rect baloonRect = new Rect(Baloons[i].Pos.X - 20, Baloons[i].Pos.Y - 20, 50, 50);
                 Rect shipRect = new Rect(0, area.Height / 10 * 9, area.Width, area.Height / 10);
                 if (baloonRect.IntersectsWith(shipRect))
                 {
@@ -199,6 +200,7 @@ namespace SpaceBaloons.Logic
                     Rect laserRect = new Rect(Lasers[j].Pos.X - 4, Lasers[j].Pos.Y - 6, 8, 12);
                     if (laserRect.IntersectsWith(baloonRect))
                     {
+                        GameOver?.Invoke(this, null);
                         if (Baloons[i].Health <= 1)
                         {
                             player.Score += Baloons[i].Health;
@@ -222,15 +224,22 @@ namespace SpaceBaloons.Logic
             }
             spawnTimer++;
             shootTimer++;
-            //if (player.CurrentHeat == 100)
-            //{
-            //    cdTime++;
-            //}
+            
             cdTime++;
             Changed?.Invoke(this, null);
             
         }
         
-        
+        private void SetupScores(string filename)
+        {
+            string jsonString = File.ReadAllText(filename+".json");
+            highscores  = JsonSerializer.Deserialize<List<Player>>(jsonString)!;
+        }
+        private void SaveScores(string filename)
+        {
+            string jsonHS = JsonSerializer.Serialize(highscores);
+            File.WriteAllText(filename + ".json", jsonHS);
+
+        }
     }
 }
