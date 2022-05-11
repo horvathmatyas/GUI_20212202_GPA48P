@@ -22,7 +22,7 @@ namespace SpaceBaloons
     /// </summary>
     public partial class MainWindow : Window
     {
-        GameLogic logic;
+        internal GameLogic logic;
         bool fireIng=false;
         bool goingLeft = false;
         bool goingRight = false;
@@ -129,12 +129,14 @@ namespace SpaceBaloons
 
         private void Increase_Attack_Speed(object sender, RoutedEventArgs e)
         {
-            logic.player.AttackSpeed += 1;
+            logic.player.AttackSpeed -= 1;
+
         }
 
         private void Reduce_Cooldown(object sender, RoutedEventArgs e)
         {
             logic.player.Cooldown -= 1;
+
         }
     }
 }
