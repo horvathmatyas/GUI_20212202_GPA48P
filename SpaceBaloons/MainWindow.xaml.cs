@@ -24,13 +24,14 @@ namespace SpaceBaloons
     public partial class MainWindow : Window
     {
         internal GameLogic logic;
-        bool fireIng=false;
+        static public bool fireIng=false;
         bool goingLeft = false;
         bool goingRight = false;
         bool RH = false;
         bool IA = false;
         bool RC = false;
         string name;
+
         public NumberToColorConverter cv = new NumberToColorConverter();
         public MainWindow(string name)
         {
@@ -64,11 +65,14 @@ namespace SpaceBaloons
             {
                 logic.Control(GameLogic.Controls.RCD);
             }
-            hppb.Value = logic.player.Health;
-            hppb.Foreground = cv.Convert(logic.player.Health);
-            heatpb.Value = logic.player.CurrentHeat;
-            heatpb.Foreground = cv.Convert((int)logic.player.CurrentHeat);
-            slb.Content = logic.player.Score;
+            if (logic.player!=null)
+            {
+                hppb.Value = logic.player.Health;
+                hppb.Foreground = cv.Convert(logic.player.Health);
+                heatpb.Value = logic.player.CurrentHeat;
+                heatpb.Foreground = cv.Convert(100 - (int)logic.player.CurrentHeat);
+                slb.Content = logic.player.Score;
+            }
             logic.TimeStep();
         }
 
@@ -88,27 +92,28 @@ namespace SpaceBaloons
             }
             if (e.Key == Key.Q)
             {
-                RH = true;
+                logic.Control(GameLogic.Controls.Rheat);
             }
             if (e.Key == Key.W)
             {
-                IA = true;
+                logic.Control(GameLogic.Controls.IncAtt);
             }
             if (e.Key == Key.E)
             {
-                RC = true;
+                logic.Control(GameLogic.Controls.RCD);
             }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            playerName.Content = name;
             logic = new GameLogic();
             logic.GameOver += Logic_GameOver;
             logic.NextLevel += Logic_NextLevel;
             display.SetupModel(logic);
 
             DispatcherTimer dt = new DispatcherTimer();
-            dt.Interval = TimeSpan.FromMilliseconds(30);
+            dt.Interval = TimeSpan.FromMilliseconds(20);
             dt.Tick += Dt_Tick;
             dt.Start();
 
@@ -146,7 +151,9 @@ namespace SpaceBaloons
             var result = MessageBox.Show("Game Over");
             if (result == MessageBoxResult.OK)
             {
+                name = null;
                 this.Close();
+                
             }
         }
 

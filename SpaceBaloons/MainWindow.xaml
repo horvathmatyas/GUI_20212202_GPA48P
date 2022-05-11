@@ -46,6 +46,7 @@
             </Border>
             <DockPanel Margin="0,0,0,0">
                 <Label DockPanel.Dock="Left" Content="Asdocska"  Padding="10" FontSize="15" FontWeight="Black"></Label>
+                <Label Name="playerName"/>
                 <Label DockPanel.Dock="Right" HorizontalAlignment="Right" Content="9999" Padding="10" FontSize="15" FontWeight="Black"></Label>
             </DockPanel>
         </StackPanel>

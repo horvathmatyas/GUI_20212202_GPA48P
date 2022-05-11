@@ -14,11 +14,11 @@ namespace SpaceBaloons.Logic
         public event EventHandler Changed;
         public event EventHandler GameOver;
         public event EventHandler NextLevel;
-        public System.Drawing.Point PlayerPos { get ; set; }
+        public System.Drawing.Point PlayerPos { get; set; }
         public List<Laser> Lasers { get; set; }
         public List<Baloon> Baloons { get; set; }
         public Player player { get; set; }
-        int spawnTimer=0; // a lufi spawnolasahoz kell
+        int spawnTimer = 0; // a lufi spawnolasahoz kell
         int waveNumber = 0; // hanyszor spawnolt wavet -- meglehet allapitani hol tart a jatek
         int cdTime = 0;
         public int shootTimer = 0;
@@ -26,7 +26,7 @@ namespace SpaceBaloons.Logic
 
         public void ReduceHeat()
         {
-            if (player.HeatGain >= 0.1)
+            if (player.HeatGain >= 0.1 && player.Score >= 10)
             {
                 player.HeatGain -= 0.1;
                 player.Score -= 10;
@@ -34,7 +34,7 @@ namespace SpaceBaloons.Logic
         }
         public void IncreaseAttackSpeed()
         {
-            if (player.AttackSpeed >= 0.4)
+            if (player.AttackSpeed >= 0.4 && player.Score >= 10)
             {
                 player.AttackSpeed -= 0.4;
                 player.Score -= 10;
@@ -43,9 +43,9 @@ namespace SpaceBaloons.Logic
         }
         public void ReduceCooldown()
         {
-            if (player.Cooldown >= 4)
+            if (player.Cooldown >= 4 && player.Score >= 10)
             {
-                player.Cooldown -= 4;
+                player.Cooldown += 0.1;
                 player.Score -= 10;
 
             }
@@ -59,15 +59,15 @@ namespace SpaceBaloons.Logic
         public void SetupGame(System.Windows.Size area, string name)
         {
             this.area = area;
-            Lasers=new List<Laser>();
-            Baloons=new List<Baloon>();
+            Lasers = new List<Laser>();
+            Baloons = new List<Baloon>();
             player = new Player(name);
-            PlayerPos = new System.Drawing.Point((int)area.Width / 2,(int)area.Height / 10 * 8 + 50);
-            
+            PlayerPos = new System.Drawing.Point((int)area.Width / 2, (int)area.Height / 10 * 8 + 50);
+
         }
         public GameLogic()
         {
-
+            GameOver += PlayerReset;
         }
         public void NewShot()
         {
@@ -76,7 +76,7 @@ namespace SpaceBaloons.Logic
                 Lasers.Add(new Laser(PlayerPos, 20));
                 player.CurrentHeat += player.HeatGain;
                 shootTimer = 0;
-            }           
+            }
         }
 
         private void newWave()
@@ -98,7 +98,7 @@ namespace SpaceBaloons.Logic
                 {
                     hp = 6;
                 }
-                Baloons.Add(new Baloon(new System.Drawing.Point(random.Next(25, (int)area.Width - 25), random.Next(25, 100)), 2, hp));                
+                Baloons.Add(new Baloon(new System.Drawing.Point(random.Next(25, (int)area.Width - 25), random.Next(25, 100)), 2, hp));
                 j++;
             }
             waveNumber++;
@@ -125,7 +125,7 @@ namespace SpaceBaloons.Logic
             switch (controls)
             {
                 case Controls.Left:
-                    newPos=new System.Drawing.Point(PlayerPos.X-15,PlayerPos.Y);
+                    newPos = new System.Drawing.Point(PlayerPos.X - 15, PlayerPos.Y);
                     break;
                 case Controls.Right:
                     newPos = new System.Drawing.Point(PlayerPos.X + 15, PlayerPos.Y);
@@ -153,11 +153,17 @@ namespace SpaceBaloons.Logic
         }
         public void TimeStep()
         {
-            if (cdTime>player.Cooldown)
+            if (!MainWindow.fireIng)
             {
-                player.CurrentHeat = 0;
-                cdTime = 0;
+                if (player.CurrentHeat > 0)
+                {
+                    player.CurrentHeat -= player.Cooldown;
+                }
             }
+            //if (cdTime > player.Cooldown)
+            //{
+            //    player.CurrentHeat -= 2;
+            //}
             for (int i = 0; i < Lasers.Count; i++)
             {
                 Lasers[i].Move();
@@ -172,7 +178,7 @@ namespace SpaceBaloons.Logic
             {
                 Baloons[i].Move();
                 Rect baloonRect = new Rect(Baloons[i].Pos.X - 20, Baloons[i].Pos.Y - 20, 40, 40);
-                Rect shipRect = new Rect(0, area.Height / 10 * 9,area.Width, area.Height / 10);
+                Rect shipRect = new Rect(0, area.Height / 10 * 9, area.Width, area.Height / 10);
                 if (baloonRect.IntersectsWith(shipRect))
                 {
                     if (player.Health < Baloons[i].Health)
@@ -184,7 +190,7 @@ namespace SpaceBaloons.Logic
                         }
                         GameOver?.Invoke(this, null);
                         break;
-                    }                   
+                    }
                     player.Health -= Baloons[i].Health;
                     Baloons.RemoveAt(i);
                 }
@@ -209,19 +215,25 @@ namespace SpaceBaloons.Logic
                     }
                 }
             }
-            if (spawnTimer==150)
+            if (spawnTimer == 150)
             {
                 newWave();
                 spawnTimer = 0;
             }
-            spawnTimer ++;
+            spawnTimer++;
             shootTimer++;
-            if (player.CurrentHeat == 100)
-            {
-                cdTime++;
-            }
-
+            //if (player.CurrentHeat == 100)
+            //{
+            //    cdTime++;
+            //}
+            cdTime++;
             Changed?.Invoke(this, null);
+            
         }
+        public void PlayerReset(object? sender, EventArgs e)
+        {
+            player = null;
+        }
+        
     }
 }
