@@ -11,7 +11,7 @@
         Title="SpaceBaloons" Height="1080" Width="1920" WindowState="Maximized" WindowStyle="None" KeyDown="Window_KeyDown" KeyUp="Window_KeyUp" Loaded="Window_Loaded" SizeChanged="Window_SizeChanged">
    
     <Window.DataContext>
-        <logic:GameLogic/>
+        <local:MainWindowViewModel/>
     </Window.DataContext>
 
     <Window.Resources>
