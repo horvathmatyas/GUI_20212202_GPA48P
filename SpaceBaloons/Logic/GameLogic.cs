@@ -65,13 +65,13 @@ namespace SpaceBaloons.Logic
                 }
                 else if (i <= 3)
                 {
-                    hp = random.Next(0, 4);
+                    hp = random.Next(1, 4);
                 }
                 else
                 {
                     hp = 6;
                 }
-                Baloons.Add(new Baloon(new System.Drawing.Point(random.Next(25, (int)area.Width - 25), 25), 2, hp));
+                Baloons.Add(new Baloon(new System.Drawing.Point(random.Next(25, (int)area.Width - 25), random.Next(25, 100)), 2, hp));                
                 j++;
             }
             waveNumber++;
@@ -172,7 +172,7 @@ namespace SpaceBaloons.Logic
                     }
                 }
             }
-            if (spawnTimer==300)
+            if (spawnTimer==150)
             {
                 newWave();
                 spawnTimer = 0;
