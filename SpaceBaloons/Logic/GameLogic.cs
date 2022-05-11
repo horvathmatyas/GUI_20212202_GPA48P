@@ -24,11 +24,37 @@ namespace SpaceBaloons.Logic
         public int shootTimer = 0;
         static Random random = new Random();
 
+        public void ReduceHeat()
+        {
+            if (player.HeatGain >= 0.1)
+            {
+                player.HeatGain -= 0.1;
+                player.Score -= 10;
+            }
+        }
+        public void IncreaseAttackSpeed()
+        {
+            if (player.AttackSpeed >= 0.4)
+            {
+                player.AttackSpeed -= 0.4;
+                player.Score -= 10;
+
+            }
+        }
+        public void ReduceCooldown()
+        {
+            if (player.Cooldown >= 4)
+            {
+                player.Cooldown -= 4;
+                player.Score -= 10;
+
+            }
+        }
 
         System.Windows.Size area;
         public enum Controls
         {
-            Left, Right, Shoot
+            Left, Right, Shoot, Rheat, IncAtt, RCD
         }
         public void SetupGame(System.Windows.Size area, string name)
         {
@@ -106,6 +132,15 @@ namespace SpaceBaloons.Logic
                     break;
                 case Controls.Shoot:
                     NewShot();
+                    break;
+                case Controls.Rheat:
+                    ReduceHeat();
+                    break;
+                case Controls.IncAtt:
+                    IncreaseAttackSpeed();
+                    break;
+                case Controls.RCD:
+                    ReduceCooldown();
                     break;
                 default:
                     break;

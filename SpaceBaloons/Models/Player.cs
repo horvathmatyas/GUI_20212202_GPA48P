@@ -12,7 +12,7 @@ namespace SpaceBaloons.Models
         public string Name { get; set; }
         public int Highscore { get; set; }
         public int Score { get; set; } 
-        public int AttackSpeed { get; set; } //rate of fire per second (1 per second at the start)
+        public double AttackSpeed { get; set; } //rate of fire per second (1 per second at the start)
         public int Cooldown { get; set; } //the time it takes to cool the turret down after reaching maxheat (decreased by 1 every 0.2 seconds)
         public double HeatGain { get; set; } //heat added to CurrentHeat pershot (at the beggining 1 per shot)
         public double CurrentHeat { get; set; } //the current heat of the turret (max at 100)

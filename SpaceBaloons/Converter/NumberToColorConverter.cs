@@ -9,24 +9,23 @@ using System.Windows.Media;
 
 namespace SpaceBaloons.Converter
 {
-    internal class NumberToColorConverter : IValueConverter
+    public class NumberToColorConverter 
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public Brush Convert(int value)
         {
-            int number = int.Parse(value.ToString());
-            if (number <= 20)
+            if (value <= 20)
             {
                 return Brushes.Red;
             }
-            else if (number <= 40)
+            else if (value <= 40)
             {
                 return Brushes.Orange;
             }
-            else if (number <= 60)
+            else if (value <= 60)
             {
                 return Brushes.Yellow;
             }
-            else if (number <= 80)
+            else if (value <= 80)
             {
                 return Brushes.LightGreen;
             }
@@ -36,9 +35,6 @@ namespace SpaceBaloons.Converter
             }
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return Binding.DoNothing;
-        }
+  
     }
 }

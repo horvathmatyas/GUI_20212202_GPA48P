@@ -1,4 +1,5 @@
-﻿using SpaceBaloons.Logic;
+﻿using SpaceBaloons.Converter;
+using SpaceBaloons.Logic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,11 @@ namespace SpaceBaloons
         bool fireIng=false;
         bool goingLeft = false;
         bool goingRight = false;
+        bool RH = false;
+        bool IA = false;
+        bool RC = false;
         string name;
+        public NumberToColorConverter cv = new NumberToColorConverter();
         public MainWindow(string name)
         {
             this.name = name;
@@ -47,6 +52,23 @@ namespace SpaceBaloons
             {
                 logic.Control(GameLogic.Controls.Left);
             }
+            if (RH)
+            {
+                logic.Control(GameLogic.Controls.Rheat);
+            }
+            if (IA)
+            {
+                logic.Control(GameLogic.Controls.IncAtt);
+            }
+            if (RC)
+            {
+                logic.Control(GameLogic.Controls.RCD);
+            }
+            hppb.Value = logic.player.Health;
+            hppb.Foreground = cv.Convert(logic.player.Health);
+            heatpb.Value = logic.player.CurrentHeat;
+            heatpb.Foreground = cv.Convert((int)logic.player.CurrentHeat);
+            slb.Content = logic.player.Score;
             logic.TimeStep();
         }
 
@@ -63,7 +85,19 @@ namespace SpaceBaloons
             if (e.Key == Key.Space)
             {
                 fireIng = true;              
-            }   
+            }
+            if (e.Key == Key.Q)
+            {
+                RH = true;
+            }
+            if (e.Key == Key.W)
+            {
+                IA = true;
+            }
+            if (e.Key == Key.E)
+            {
+                RC = true;
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -138,25 +172,20 @@ namespace SpaceBaloons
             {
                 goingRight = false;
             }
-        }
-
-        private void Reduce_Heat(object sender, RoutedEventArgs e)
-        {
-            logic.player.CurrentHeat -= 0.1;
-        }
-
-        private void Increase_Attack_Speed(object sender, RoutedEventArgs e)
-        {
-            logic.player.AttackSpeed -= 1;
-
-        }
-
-        private void Reduce_Cooldown(object sender, RoutedEventArgs e)
-        {
-            if (logic.player.Cooldown >= 3)
+            if (e.Key == Key.Q)
             {
-                logic.player.Cooldown -= 3;
+                RH = false;
+            }
+            if (e.Key == Key.W)
+            {
+                IA = false;
+            }
+            if (e.Key == Key.E)
+            {
+                RC = false;
             }
         }
+
+
     }
 }
