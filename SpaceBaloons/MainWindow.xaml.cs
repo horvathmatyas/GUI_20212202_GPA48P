@@ -70,6 +70,7 @@ namespace SpaceBaloons
         {
             logic = new GameLogic();
             logic.GameOver += Logic_GameOver;
+            logic.NextLevel += Logic_NextLevel;
             display.SetupModel(logic);
 
             DispatcherTimer dt = new DispatcherTimer();
@@ -89,7 +90,23 @@ namespace SpaceBaloons
                 display.SetupSizes(new Size(game_grid.ActualWidth, grid.ActualHeight));
             }
         }
-
+        private void Logic_NextLevel(object? sender, EventArgs e)
+        {
+            var result = MessageBox.Show("Advance to next level?", "Level Up!", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                logic.player.Level++;
+            }
+            else
+            {
+                var r = MessageBox.Show("Game Over");
+                if (r == MessageBoxResult.OK)
+                {
+                    this.Close();
+                }
+            }
+ 
+        }
         private void Logic_GameOver(object? sender, EventArgs e)
         {
             var result = MessageBox.Show("Game Over");
@@ -136,8 +153,10 @@ namespace SpaceBaloons
 
         private void Reduce_Cooldown(object sender, RoutedEventArgs e)
         {
-            logic.player.Cooldown -= 1;
-
+            if (logic.player.Cooldown >= 3)
+            {
+                logic.player.Cooldown -= 3;
+            }
         }
     }
 }

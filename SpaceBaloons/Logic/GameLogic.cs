@@ -13,6 +13,7 @@ namespace SpaceBaloons.Logic
     {
         public event EventHandler Changed;
         public event EventHandler GameOver;
+        public event EventHandler NextLevel;
         public System.Drawing.Point PlayerPos { get ; set; }
         public List<Laser> Lasers { get; set; }
         public List<Baloon> Baloons { get; set; }
@@ -75,15 +76,15 @@ namespace SpaceBaloons.Logic
                 j++;
             }
             waveNumber++;
-            if (waveNumber == 51 && player.Level == 1)
+            if (waveNumber == 50 && player.Level == 1)
             {
-                player.Level++;
                 waveNumber = 0;
+                NextLevel?.Invoke(this, null);
             }
-            else if (waveNumber == 101 && player.Level == 2)
+            else if (waveNumber == 100 && player.Level == 2)
             {
-                player.Level++;
                 waveNumber = 0;
+                NextLevel?.Invoke(this, null);
             }
             //else if (waveNumber == ?? && player.Level == 3)
             //{
@@ -120,6 +121,7 @@ namespace SpaceBaloons.Logic
             if (cdTime>player.Cooldown)
             {
                 player.CurrentHeat = 0;
+                cdTime = 0;
             }
             for (int i = 0; i < Lasers.Count; i++)
             {
@@ -179,7 +181,11 @@ namespace SpaceBaloons.Logic
             }
             spawnTimer ++;
             shootTimer++;
-            cdTime++;
+            if (player.CurrentHeat == 100)
+            {
+                cdTime++;
+            }
+
             Changed?.Invoke(this, null);
         }
     }

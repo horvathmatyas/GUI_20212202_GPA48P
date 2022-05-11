@@ -26,7 +26,7 @@ namespace SpaceBaloons.Models
             Score = 0;
             Highscore = 0;
             AttackSpeed = 4;
-            Cooldown = 1;
+            Cooldown = 20;
             HeatGain = 1;
             CurrentHeat = 0;
             Health = 100;

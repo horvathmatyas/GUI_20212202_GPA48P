@@ -11,7 +11,7 @@
             <Label Content="Space Baloons" HorizontalAlignment="Center" FontSize="50" FontWeight="Bold" Margin="0,20,0,15" FontFamily="goudy stout" Foreground="Red" />
             <Label Content="Enter your name:" Foreground="Red" HorizontalAlignment="Center" FontSize="30"/>
             <TextBox x:Name="tb" Padding="8" Margin="250,5,250,0" Background="Red"/>
-            <Button Content="Start" Click="Button_Click" FontSize="30" Padding="15" Margin="250,5,250,0" Background="Blue" Foreground="Red" FontFamily="Algerian"/>
+            <Button Content="Play" Click="Button_Click" FontSize="30" Padding="15" Margin="250,5,250,0" Background="Blue" Foreground="Red" FontFamily="Algerian"/>
         </StackPanel>
 
     </Grid>
