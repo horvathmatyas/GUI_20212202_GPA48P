@@ -114,7 +114,6 @@ namespace SpaceBaloons
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            playerName.Content = name;
             logic = new GameLogic();
             logic.GameOver += Logic_GameOver;
             logic.NextLevel += Logic_NextLevel;

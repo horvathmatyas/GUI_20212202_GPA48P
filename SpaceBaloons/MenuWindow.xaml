@@ -5,13 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SpaceBaloons"
         mc:Ignorable="d"
-        Title="MenuWindow" Height="450" Width="800" KeyDown="Window_KeyDown">
-    <Grid Background="Black">
+        Title="MenuWindow" Height="800" Width="1300" KeyDown="Window_KeyDown" WindowState="Maximized">
+    <Grid Background="Gray">
         <StackPanel>
-            <Label Content="Space Baloons" HorizontalAlignment="Center" FontSize="50" FontWeight="Bold" Margin="0,20,0,15" FontFamily="goudy stout" Foreground="Red" />
-            <Label Content="Enter your name:" Foreground="Red" HorizontalAlignment="Center" FontSize="30"/>
-            <TextBox x:Name="tb" Padding="8" Margin="250,5,250,0" Background="Red"/>
-            <Button Content="Play" Click="Button_Click" FontSize="30" Padding="15" Margin="250,5,250,0" Background="Blue" Foreground="Red" FontFamily="Algerian"/>
+            <Label Content="Space Baloons" HorizontalAlignment="Center" FontSize="100" FontWeight="Bold" Margin="0,20,0,30" FontFamily="goudy stout" Foreground="Black" />
+            <Label Content="Enter your name:" Foreground="Black" HorizontalAlignment="Center" FontSize="50" Padding="10" FontWeight="Bold" FontFamily="Arial" Margin="250,5,250,50"/>
+            <TextBox x:Name="tb" Padding="10" Margin="250,5,250,50" Background="DarkGray"/>
+            <Button Content="Play" Click="Button_Click" FontSize="30" Padding="15" Margin="250,5,250,0" Background="Black" Foreground="DarkGray" FontFamily="Algerian"/>
+            <Label Content="Game by: Horváth Mátyás, Joó Zoltán and Joó Dávid" Foreground="Black" HorizontalAlignment="Center" FontSize="30" Padding="10" FontWeight="Bold" FontFamily="Arial" Margin="250,50,250,50"/>
+
         </StackPanel>
 
     </Grid>

@@ -125,7 +125,13 @@ namespace SpaceBaloons.Renderer
                 return new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "lézer_zöld.png"), UriKind.RelativeOrAbsolute)));
             }
         }
-
+        public Brush ShipBrush
+        {
+            get
+            {
+                return new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "űrhajófinal.png"), UriKind.RelativeOrAbsolute)));
+            }
+        }
         public Pen debugPen
         {
             get
@@ -142,18 +148,18 @@ namespace SpaceBaloons.Renderer
                 if (model.player.Level == 1)
                 {
                     drawingContext.DrawRectangle(SpaceBrush, null, new Rect(0, 0, area.Width, area.Height));
-                    drawingContext.DrawRectangle(Brushes.Red, null, new Rect(0, area.Height / 10 * 9, area.Width, area.Height / 10));
+                    drawingContext.DrawRectangle(ShipBrush, null, new Rect(0, area.Height / 10 * 8.5, area.Width, area.Height / 10 + 55));
                 }
                 else if (model.player.Level == 2)
                 {
-                    drawingContext.DrawRectangle(DesertBrush, null, new Rect(0, 0, area.Width, area.Height));
-                    drawingContext.DrawRectangle(Brushes.Green, null, new Rect(0, area.Height / 10 * 9, area.Width, area.Height / 10));
+                    drawingContext.DrawRectangle(PlanetBrush, null, new Rect(0, 0, area.Width, area.Height));
+                    drawingContext.DrawRectangle(ShipBrush, null, new Rect(0, area.Height / 10 * 8.5, area.Width, area.Height / 10 + 55));
 
                 }
                 else if (model.player.Level == 3)
                 {
-                    drawingContext.DrawRectangle(PlanetBrush, null, new Rect(0, 0, area.Width, area.Height));
-                    drawingContext.DrawRectangle(Brushes.Brown, null, new Rect(0, area.Height / 10 * 9, area.Width, area.Height / 10));
+                    drawingContext.DrawRectangle(DesertBrush, null, new Rect(0, 0, area.Width, area.Height));
+                    drawingContext.DrawRectangle(ShipBrush, null, new Rect(0, area.Height / 10 * 8.5, area.Width, area.Height / 10 + 55));
 
 
                 }

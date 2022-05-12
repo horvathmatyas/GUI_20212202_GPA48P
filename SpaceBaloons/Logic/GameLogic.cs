@@ -106,9 +106,10 @@ namespace SpaceBaloons.Logic
                 j++;
             }
             waveNumber++;
-            if (waveNumber == 50 && player.Level == 1)
+            if (waveNumber == 10 && player.Level == 1)
             {
                 waveNumber = 0;
+                Baloons.Clear();
                 NextLevel?.Invoke(this, null);
             }
             else if (waveNumber == 100 && player.Level == 2)
@@ -179,7 +180,7 @@ namespace SpaceBaloons.Logic
             {
                 Baloons[i].Move();
                 Rect baloonRect = new Rect(Baloons[i].Pos.X - 20, Baloons[i].Pos.Y - 20, 50, 50);
-                Rect shipRect = new Rect(0, area.Height / 10 * 9, area.Width, area.Height / 10);
+                Rect shipRect = new Rect(0, area.Height / 10 * 8.5, area.Width, area.Height / 10 + 55);
                 if (baloonRect.IntersectsWith(shipRect))
                 {
                     if (player.Health < Baloons[i].Health)
@@ -200,7 +201,6 @@ namespace SpaceBaloons.Logic
                     Rect laserRect = new Rect(Lasers[j].Pos.X - 4, Lasers[j].Pos.Y - 6, 8, 12);
                     if (laserRect.IntersectsWith(baloonRect))
                     {
-                        GameOver?.Invoke(this, null);
                         if (Baloons[i].Health <= 1)
                         {
                             player.Score += Baloons[i].Health;

@@ -29,7 +29,7 @@ namespace SpaceBaloons
 
             MainWindow win = new MainWindow(tb.Text);
             win.ShowDialog();
-            //this.Close();
+            this.Close();
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)

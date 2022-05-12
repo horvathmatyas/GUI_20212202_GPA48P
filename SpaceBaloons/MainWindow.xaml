@@ -20,34 +20,27 @@
             <ColumnDefinition Width="2*" x:Name="scores_grid"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray">
-            <Label Content="Score" Padding="10" FontSize="40" FontWeight="Black"/>
-            <Label x:Name="slb" Padding="10" FontSize="40" FontWeight="Black"/>
-            <Label Content="Health" Padding="10" FontSize="40" FontWeight="Black"/>
+        <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Gray">
+            <Label Content="Score" Padding="10" FontSize="40" FontWeight="Black" Foreground="LightGray"/>
+            <Label x:Name="slb" Padding="10" FontSize="40" FontWeight="Black" Foreground="LightGray"/>
+            <Label Content="Health" Padding="10" FontSize="30" FontWeight="Black" Foreground="LightGray"/>
             <ProgressBar x:Name="hppb" Maximum="100" Margin="10,0,10,0"   Height="40" />
-            <Label Content="Current Heat" Padding="10" FontSize="40" FontWeight="Black"/>
+            <Label Content="Current Heat" Padding="10" FontSize="30" FontWeight="Black" Foreground="LightGray"/>
             <ProgressBar x:Name="heatpb" Maximum="100" Margin="10,0,10,0"  Height="40" />
-            <DockPanel Margin="0,10,0,0">
-                <Label DockPanel.Dock="Left" Content="Reduce Heat: (10)(Q)"  Padding="10" FontSize="40" FontWeight="Black"></Label>
-            </DockPanel>
-            <DockPanel>
-                <Label DockPanel.Dock="Left" Content="Increase Attack Speed: (10)(W)"  Padding="10" FontSize="40" FontWeight="Black"></Label>
-            </DockPanel>
-            <DockPanel>
-                <Label DockPanel.Dock="Left" Content="Reduce Cooldown: (10)(E)"  Padding="10" FontSize="40" FontWeight="Black"></Label>
-            </DockPanel>
+            <Label DockPanel.Dock="Left" Content="Reduce Heat: (10)(Q)"  Padding="10" FontSize="30" FontWeight="Black" Foreground="LightGray"></Label>
+            <Label DockPanel.Dock="Left" Content="Increase Attack Speed: (10)(W)"  Padding="10" FontSize="30" FontWeight="Black" Foreground="LightGray"></Label>
+            <Label DockPanel.Dock="Left" Content="Reduce Cooldown: (10)(E)"  Padding="10" FontSize="30" FontWeight="Black" Foreground="LightGray"></Label>
         </StackPanel>
         
         <renderer:Display x:Name="display" Grid.Column="1"/>
 
-        <StackPanel Grid.Column="2" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray">
-            <Border BorderThickness="0,0,0,3" BorderBrush="Black" Margin="0,10">
-                <Label Content="High Score List" HorizontalAlignment="Center" FontSize="25" FontWeight="Bold" Margin="0,0,0,15"/>
+        <StackPanel Grid.Column="2" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Gray">
+            <Border BorderThickness="0,0,0,3" BorderBrush="LightGray" Margin="0,10">
+                <Label Content="High Score List" HorizontalAlignment="Center" FontSize="25" FontWeight="Bold" Margin="0,0,0,15" Foreground="LightGray"/>
             </Border>
             <DockPanel Margin="0,0,0,0">
-                <Label DockPanel.Dock="Left" Content="Asdocska"  Padding="10" FontSize="15" FontWeight="Black"></Label>
-                <Label Name="playerName"/>
-                <Label DockPanel.Dock="Right" HorizontalAlignment="Right" Content="9999" Padding="10" FontSize="15" FontWeight="Black"></Label>
+                <Label DockPanel.Dock="Left" Content="Asdocska"  Padding="10" FontSize="15" FontWeight="Black" Foreground="LightGray"></Label>
+                <Label DockPanel.Dock="Right" HorizontalAlignment="Right" Content="9999" Padding="10" FontSize="15" FontWeight="Black" Foreground="LightGray"></Label>
             </DockPanel>
         </StackPanel>
 
