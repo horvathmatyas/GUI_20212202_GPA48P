@@ -12,6 +12,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using SpaceBaloons.Models;
 
 namespace SpaceBaloons
 {
@@ -20,6 +23,7 @@ namespace SpaceBaloons
     /// </summary>
     public partial class Loads : Window
     {
+        public string SelectedSave { get; set; }
         public Loads()
         {
             lb_saves.ItemsSource=GetAllSaves();
@@ -34,11 +38,15 @@ namespace SpaceBaloons
             }
             return saves;
         }
-        private void LoadSaveContent(string file)
+        private void LoadSaveContent()
         {
-
+            Player playerToLoad = JsonSerializer.Deserialize<Player>(System.IO.Path.Combine("Save", SelectedSave) + ".json");
+            MainWindow m = new MainWindow(playerToLoad);
         }
 
-        
+        public void lb_saves_Selected(object sender, RoutedEventArgs e)
+        {
+            SelectedSave = (sender as ListBoxItem).Content.ToString();
+        }
     }
 }

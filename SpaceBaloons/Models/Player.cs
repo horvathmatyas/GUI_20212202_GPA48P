@@ -22,7 +22,14 @@ namespace SpaceBaloons.Models
 
         public Player(string name)
         {
-            Name = name;
+            if (name=="")
+            {
+                Name = "GAMER";
+            }
+            else
+            {
+                Name = name;
+            }
             Score = 0;
             Highscore = 0;
             AttackSpeed = 4;

@@ -14,6 +14,7 @@
     <None Remove="Images\fehér.png" />
     <None Remove="Images\fekete.png" />
     <None Remove="Images\fekete_háttérsssd.jpg" />
+    <None Remove="Images\GO.png" />
     <None Remove="Images\homok2.jpg" />
     <None Remove="Images\kék.png" />
     <None Remove="Images\lézer_kék.png" />
@@ -28,6 +29,7 @@
     <None Remove="Images\űrhajó2dwdwqd.png" />
     <None Remove="Images\űrhajó3.jpg" />
     <None Remove="Images\űrhajófinal.png" />
+    <None Remove="Save\test.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -44,6 +46,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\fekete.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\GO.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\homok2.jpg">
@@ -86,6 +91,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\űrhajófinal.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Save\test.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

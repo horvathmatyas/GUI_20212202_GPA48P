@@ -6,7 +6,14 @@
         xmlns:local="clr-namespace:SpaceBaloons"
         mc:Ignorable="d"
         Title="Loads" Height="259" Width="355">
-    <ListBox Name="lb_saves">
-        
-    </ListBox>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="185*"/>
+            <RowDefinition Height="58*"/>
+        </Grid.RowDefinitions>
+        <ListBox Grid.Row="0" Name="lb_saves" SelectionChanged="lb_saves_Selected">
+
+        </ListBox>
+        <Button Grid.Row="1" Content="Load"/>
+    </Grid>
 </Window>

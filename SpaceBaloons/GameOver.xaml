@@ -1,0 +1,26 @@
+﻿<Window x:Class="SpaceBaloons.GameOver"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SpaceBaloons"
+        mc:Ignorable="d"
+        Title="GameOver" Height="1080" Width="1920" WindowState="Maximized">
+    <Grid Background="DarkGray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Image Grid.Row="0" Source="Images\GO.png"/>
+        <Label Grid.Row="1" Content="You Lost" Foreground="Black" Background="DarkGray"  FontSize="60" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Button VerticalAlignment="Stretch" Grid.Column="0" Content="Try again" Foreground="Black" Background="DarkGray" BorderBrush="DarkGray" FontSize="35" FontWeight="Bold" Click="Button_Click"/>
+            <Button VerticalContentAlignment="Center" Grid.Column="1" Content="Give Up" Foreground="Black" Background="DarkGray" BorderBrush="DarkGray" FontSize="35" FontWeight="Bold" Click="Button_Click_1"/>
+        </Grid>
+    </Grid>
+</Window>

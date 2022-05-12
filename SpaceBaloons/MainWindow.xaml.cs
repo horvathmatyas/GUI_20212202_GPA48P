@@ -1,5 +1,6 @@
 ﻿using SpaceBaloons.Converter;
 using SpaceBaloons.Logic;
+using SpaceBaloons.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,7 @@ namespace SpaceBaloons
         bool RH = false;
         bool IA = false;
         bool RC = false;
+        public DispatcherTimer dt;
         public string name { get; set; }
 
         public NumberToColorConverter cv = new NumberToColorConverter();
@@ -41,9 +43,24 @@ namespace SpaceBaloons
             }
             else
             {
+               
                 this.name = name; //itt visszaall a nev a regire valamiert
             }
-            
+            Application.Current.MainWindow = this;
+            dt = new DispatcherTimer();
+            InitializeComponent();
+        }
+        public MainWindow(Player p)
+        {
+            if (logic != null)
+            {
+                name = logic.player.Name;
+            }
+            else
+            {
+                logic.player=p;
+            }
+            dt.Start();
             InitializeComponent();
         }
 
@@ -116,7 +133,9 @@ namespace SpaceBaloons
             }
             if (e.Key==Key.Escape)
             {
-                PauseWindow p = new PauseWindow(logic);
+                PauseWindow p = new PauseWindow(logic,this);
+                dt.Stop();
+                p.ShowDialog();
             }
         }
 
@@ -127,11 +146,18 @@ namespace SpaceBaloons
             logic.GameOver += Logic_GameOver;
             logic.NextLevel += Logic_NextLevel;
             display.SetupModel(logic);
-            DispatcherTimer dt = new DispatcherTimer();
+            
             dt.Interval = TimeSpan.FromMilliseconds(20);
             dt.Tick += Dt_Tick;
             dt.Start();
-            logic.SetupGame(new Size(game_grid.ActualWidth, grid.ActualHeight), name);
+            if (logic.player is null)
+            {
+                logic.SetupGame(new Size(game_grid.ActualWidth, grid.ActualHeight), name);
+            }
+            else
+            {
+                logic.SetupGame(new Size(game_grid.ActualWidth, grid.ActualHeight));
+            }
             display.SetupSizes(new Size(game_grid.ActualWidth, grid.ActualHeight));
             logic.ReadHs();
             logic.SortHS();
@@ -184,6 +210,8 @@ namespace SpaceBaloons
             if (result == MessageBoxResult.OK)
             {
                 logic.WriteHs();
+                GameOver gameOver = new GameOver();
+                gameOver.ShowDialog();
                 this.Close();                
             }
         }

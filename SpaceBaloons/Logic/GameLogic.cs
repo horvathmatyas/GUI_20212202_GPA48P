@@ -73,6 +73,15 @@ namespace SpaceBaloons.Logic
             PlayerPos = new System.Drawing.Point((int)area.Width / 2, (int)area.Height / 10 * 8 + 50);
 
         }
+        public void SetupGame(System.Windows.Size area)
+        {
+            Highscores = new List<string>();
+            this.area = area;
+            Lasers = new List<Laser>();
+            Baloons = new List<Baloon>();
+            PlayerPos = new System.Drawing.Point((int)area.Width / 2, (int)area.Height / 10 * 8 + 50);
+
+        }
         public GameLogic()
         {
 
@@ -251,7 +260,15 @@ namespace SpaceBaloons.Logic
         {
             string newName = player.Name;
             int newScore = player.Score;
-            string newhs = "\n" + player.Name + ":" + player.Score;
+            string newhs = "";
+            if (File.ReadAllLines(Path.Combine("HsFile", "hs.txt"))[0]=="")
+            {
+                newhs=player.Name + ":" + player.Score;
+            }
+            else
+            {
+                newhs = "\n" + player.Name + ":" + player.Score;
+            }           
             File.AppendAllText(Path.Combine("HsFile", "hs.txt"), newhs);
 
         }
