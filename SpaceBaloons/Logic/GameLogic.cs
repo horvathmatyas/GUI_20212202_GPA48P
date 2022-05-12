@@ -27,8 +27,6 @@ namespace SpaceBaloons.Logic
         int cdTime = 0;
         public int shootTimer = 0;
         static Random random = new Random();
-        public List<string> Names { get; set; }
-        public List<int> Scores { get; set; }
         public List<string> Highscores { get; set; }
 
 
@@ -51,7 +49,7 @@ namespace SpaceBaloons.Logic
         }
         public void ReduceCooldown()
         {
-            if (player.Cooldown >= 4 && player.Score >= 10)
+            if (player.Score >= 10)
             {
                 player.Cooldown += 0.1;
                 player.Score -= 10;
@@ -99,7 +97,7 @@ namespace SpaceBaloons.Logic
 
         private void newWave()
         {
-            if (waveNumber <= 2 || player.Level==3)
+            if (waveNumber <= 4 || player.Level==3)
             {
                 double i = waveNumber;
                 int j = 0;
@@ -136,7 +134,7 @@ namespace SpaceBaloons.Logic
             else if (player.Level == 3 && Baloons.Count == 0)
             {
                 waveNumber = 0;
-                NextLevel?.Invoke(this, null);
+                FinishGame?.Invoke(this, null);
             }
             waveNumber++;
 

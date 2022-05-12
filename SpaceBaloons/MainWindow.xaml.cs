@@ -98,6 +98,23 @@ namespace SpaceBaloons
                 heatpb.Value = logic.player.CurrentHeat;
                 heatpb.Foreground = cv.Convert(100 - (int)logic.player.CurrentHeat);
                 slb.Content = logic.player.Score;
+                if (logic.player.AttackSpeed == 0)
+                {
+                    lb_ias.Content = "MAX";
+                }
+                else
+                {
+                    lb_ias.Content = logic.player.AttackSpeed;
+                }
+                if (logic.player.HeatGain == 0)
+                {
+                    lb_rdh.Content = "MAX";
+                }
+                else
+                {
+                    lb_rdh.Content = logic.player.HeatGain;
+                }
+                lb_rcd.Content = logic.player.Cooldown;
             }
             logic.TimeStep();
         }

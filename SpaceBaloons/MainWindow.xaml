@@ -22,9 +22,18 @@
             <ProgressBar x:Name="hppb" Maximum="100" Margin="10,0,10,0"   Height="40" />
             <Label Content="Current Heat" Padding="10" FontSize="30" FontWeight="Black" Foreground="LightGray"/>
             <ProgressBar x:Name="heatpb" Maximum="100" Margin="10,0,10,0"  Height="40" />
-            <Label DockPanel.Dock="Left" Content="Reduce Heat: (10)(Q)"  Padding="10" FontSize="30" FontWeight="Black" Foreground="LightGray"></Label>
-            <Label DockPanel.Dock="Left" Content="Increase Attack Speed: (10)(W)"  Padding="10" FontSize="30" FontWeight="Black" Foreground="LightGray"></Label>
-            <Label DockPanel.Dock="Left" Content="Reduce Cooldown: (10)(E)"  Padding="10" FontSize="30" FontWeight="Black" Foreground="LightGray"></Label>
+            <DockPanel>
+                <Label DockPanel.Dock="Left" Content="Reduce Heat: (10)(Q)"  Padding="10" FontSize="30" FontWeight="Black" Foreground="LightGray"></Label>
+                <Label DockPanel.Dock="Right" x:Name="lb_rdh" FontSize="30" FontWeight="Black" Foreground="LightGray" Padding="10"></Label>
+            </DockPanel>
+            <DockPanel>
+                <Label DockPanel.Dock="Left" Content="Increase Attack Speed: (10)(W)"  Padding="10" FontSize="30" FontWeight="Black" Foreground="LightGray"></Label>
+                <Label DockPanel.Dock="Right" x:Name="lb_ias" FontSize="30" FontWeight="Black" Foreground="LightGray" Padding="10"></Label>
+            </DockPanel>
+            <DockPanel>
+                <Label DockPanel.Dock="Left" Content="Reduce Cooldown: (10)(E)"  Padding="10" FontSize="30" FontWeight="Black" Foreground="LightGray"></Label>
+                <Label DockPanel.Dock="Right" x:Name="lb_rcd" FontSize="30" FontWeight="Black" Foreground="LightGray" Padding="10"></Label>
+            </DockPanel>
         </StackPanel>
         
         <renderer:Display x:Name="display" Grid.Column="1"/>
