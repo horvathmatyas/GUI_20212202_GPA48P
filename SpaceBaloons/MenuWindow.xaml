@@ -12,6 +12,7 @@
             <Label Content="Enter your name:" Foreground="Black" HorizontalAlignment="Center" FontSize="50" Padding="10" FontWeight="Bold" FontFamily="Arial" Margin="250,5,250,50"/>
             <TextBox x:Name="tb" Padding="10" Margin="250,5,250,50" Background="DarkGray"/>
             <Button Content="Play" Click="Button_Click" FontSize="30" Padding="15" Margin="250,5,250,0" Background="Black" Foreground="DarkGray" FontFamily="Algerian"/>
+            <Button Content="Load" Click="Button_Click_Load" FontSize="30" Padding="15" Margin="250,5,250,0" Background="Black" Foreground="DarkGray" FontFamily="Algerian"/>
             <Label Content="Game by: Horváth Mátyás, Joó Zoltán and Joó Dávid" Foreground="Black" HorizontalAlignment="Center" FontSize="30" Padding="10" FontWeight="Bold" FontFamily="Arial" Margin="250,50,250,50"/>
 
         </StackPanel>

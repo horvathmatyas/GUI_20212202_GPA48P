@@ -45,12 +45,7 @@ namespace SpaceBaloons
             }
             MessageBox.Show("Succesful save as " + logic.player.Name);
         }
-        private void Button_Click_Load(object sender, RoutedEventArgs e)
-        {
-            Loads load=new Loads();
-            load.ShowDialog();
-            this.Close();
-        }
+       
         private void Button_Click_Exit(object sender, RoutedEventArgs e)
         {
             this.Close();

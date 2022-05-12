@@ -9,17 +9,12 @@
         xmlns:logic="clr-namespace:SpaceBaloons.Logic"
         mc:Ignorable="d"
         Title="SpaceBaloons" Height="1080" Width="1920" WindowState="Maximized" WindowStyle="None" KeyDown="Window_KeyDown" KeyUp="Window_KeyUp" Loaded="Window_Loaded" SizeChanged="Window_SizeChanged">
-    
-
-    
     <Grid x:Name="grid">
-
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*" x:Name="upgrades_grid"/>
             <ColumnDefinition Width="3*" x:Name="game_grid"/>
             <ColumnDefinition Width="2*" x:Name="scores_grid"/>
         </Grid.ColumnDefinitions>
-
         <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Gray">
             <Label Content="Score" Padding="10" FontSize="40" FontWeight="Black" Foreground="LightGray"/>
             <Label x:Name="slb" Padding="10" FontSize="40" FontWeight="Black" Foreground="LightGray"/>

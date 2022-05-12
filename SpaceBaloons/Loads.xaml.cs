@@ -42,12 +42,6 @@ namespace SpaceBaloons
             return saves;
         }
 
-        public void lb_saves_Selected(object sender, RoutedEventArgs e)
-        {
-            SelectedSave = lb_saves.SelectedItem.ToString();
-            SelectedSave = (sender as ListBoxItem).Content.ToString();
-        }
-
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -55,6 +49,7 @@ namespace SpaceBaloons
             string content=st.ReadToEnd();
             Player playerToLoad = JsonSerializer.Deserialize<Player>(content);
             MainWindow m = new MainWindow(playerToLoad);
+            m.Show();
             this.Close();
         }
 

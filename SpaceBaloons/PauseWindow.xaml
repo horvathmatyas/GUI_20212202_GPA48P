@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SpaceBaloons"
         mc:Ignorable="d"
-        Title="PauseWindow" Height="561" Width="371">
+        Title="PauseWindow" Height="468" Width="371" WindowStartupLocation="CenterScreen">
     <StackPanel Background="Gray">
         <Label Content="Game is Paused" HorizontalAlignment="Center" Margin="10,20,10,30" Height="50" FontSize="30" FontFamily="Arial" Foreground="Black" FontWeight="ExtraBold"/>
         <Button Content="Continue" Margin="50,20,50,30" Height="50" FontSize="30" FontFamily="Arial" Background="Black" Foreground="Gray" Click="Button_Click_Continue"/>
         <Button Content="Save" Margin="50,20,50,30" Height="50" FontSize="30" FontFamily="Arial" Background="Black" Foreground="Gray" Click="Button_Click_Save"/>
-        <Button Content="Load" Margin="50,20,50,30" Height="50" FontSize="30" FontFamily="Arial" Background="Black" Foreground="Gray" Click="Button_Click_Load"/>
+        
         <Button Content="Exit Game" Margin="50,20,50,30" Height="50" FontSize="30" FontFamily="Arial" Background="Black" Foreground="Gray" Click="Button_Click_Exit"/>
     </StackPanel>
 </Window>

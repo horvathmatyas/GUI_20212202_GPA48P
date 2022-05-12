@@ -62,6 +62,7 @@ namespace SpaceBaloons
                 loadedPlayer=p;
             }
             InitializeComponent();
+            dt = new DispatcherTimer();
         }
 
         private void Dt_Tick(object? sender, EventArgs e)
@@ -149,12 +150,18 @@ namespace SpaceBaloons
             logic = new GameLogic();
             logic.GameOver += Logic_GameOver;
             logic.NextLevel += Logic_NextLevel;
+            logic.FinishGame += Logic_Finish;
             display.SetupModel(logic);
             
             dt.Interval = TimeSpan.FromMilliseconds(20);
             dt.Tick += Dt_Tick;
             dt.Start();
-            if (logic.player is null)
+            if (loadedPlayer!=null)
+            {
+                logic.SetupGame(new Size(game_grid.ActualWidth, grid.ActualHeight));
+                logic.player = loadedPlayer;
+            }
+            else if (logic.player is null)
             {
                 logic.SetupGame(new Size(game_grid.ActualWidth, grid.ActualHeight), name);
             }
@@ -209,10 +216,15 @@ namespace SpaceBaloons
             }
  
         }
+        private void Logic_Finish(object? sender, EventArgs e)
+        {
+            MessageBox.Show("You saved Earth and everyon on it, Good Job!", "Now you can play the game for eternety", MessageBoxButton.OK);               
+        }
         private void Logic_GameOver(object? sender, EventArgs e)
         {            
             logic.WriteHs();
             GameOver gameOver = new GameOver();
+            dt.Stop();
             gameOver.ShowDialog();
             this.Close();                          
         }

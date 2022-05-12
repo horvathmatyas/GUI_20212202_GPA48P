@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SpaceBaloons"
         mc:Ignorable="d"
-        Title="Loads" Height="259" Width="355">
+        Title="Loads" Height="259" Width="355" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="185*"/>
             <RowDefinition Height="58*"/>
         </Grid.RowDefinitions>
-        <ListBox Grid.Row="0" Name="lb_saves" SelectionChanged="lb_saves_SelectionChanged_1">
+        <ListBox Grid.Row="0" Name="lb_saves" SelectionChanged="lb_saves_SelectionChanged_1" >
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Label Content="{Binding}"/>

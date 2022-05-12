@@ -17,6 +17,7 @@ namespace SpaceBaloons.Logic
         public event EventHandler Changed;
         public event EventHandler GameOver;
         public event EventHandler NextLevel;
+        public event EventHandler FinishGame;
         public System.Drawing.Point PlayerPos { get; set; }
         public List<Laser> Lasers { get; set; }
         public List<Baloon> Baloons { get; set; }
@@ -98,7 +99,7 @@ namespace SpaceBaloons.Logic
 
         private void newWave()
         {
-            if (waveNumber != 10)
+            if (waveNumber <= 2 || player.Level==3)
             {
                 double i = waveNumber;
                 int j = 0;
@@ -129,6 +130,11 @@ namespace SpaceBaloons.Logic
             else if (player.Level == 2 && Baloons.Count == 0)
             {
 
+                waveNumber = 0;
+                NextLevel?.Invoke(this, null);
+            }
+            else if (player.Level == 3 && Baloons.Count == 0)
+            {
                 waveNumber = 0;
                 NextLevel?.Invoke(this, null);
             }
@@ -218,7 +224,7 @@ namespace SpaceBaloons.Logic
                     Rect laserRect = new Rect(Lasers[j].Pos.X - 4, Lasers[j].Pos.Y - 6, 8, 12);
                     if (laserRect.IntersectsWith(baloonRect))
                     {
-                        if (Baloons[i].Health <= 1)
+                        if (Baloons[i]!=null && Baloons[i].Health <= 1)
                         {
                             player.Score += Baloons[i].Health;
                             Baloons.RemoveAt(i);
@@ -261,7 +267,8 @@ namespace SpaceBaloons.Logic
             string newName = player.Name;
             int newScore = player.Score;
             string newhs = "";
-            if (File.ReadAllLines(Path.Combine("HsFile", "hs.txt"))[0]=="")
+            string[] fileContent = File.ReadAllLines(Path.Combine("HsFile", "hs.txt"));
+            if (fileContent.Length==0)
             {
                 newhs=player.Name + ":" + player.Score;
             }

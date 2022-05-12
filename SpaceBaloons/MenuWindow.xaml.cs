@@ -40,5 +40,12 @@ namespace SpaceBaloons
                 win.ShowDialog();
             }
         }
+
+        private void Button_Click_Load(object sender, RoutedEventArgs e)
+        {
+            Loads load = new Loads();
+            load.ShowDialog();
+            this.Close();
+        }
     }
 }
