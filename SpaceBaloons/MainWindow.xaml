@@ -42,7 +42,7 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <WrapPanel Orientation="Horizontal">
-                            <Label Content="{Binding Highscores}"/>
+                            <Label Content="{Binding Highscores }"/>
                         </WrapPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

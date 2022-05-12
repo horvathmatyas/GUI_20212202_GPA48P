@@ -123,7 +123,6 @@ namespace SpaceBaloons
             logic.GameOver += Logic_GameOver;
             logic.NextLevel += Logic_NextLevel;
             display.SetupModel(logic);
-            lb_highScore.ItemsSource = logic.Highscores;
             DispatcherTimer dt = new DispatcherTimer();
             dt.Interval = TimeSpan.FromMilliseconds(20);
             dt.Tick += Dt_Tick;
@@ -132,6 +131,8 @@ namespace SpaceBaloons
             logic.SetupGame(new Size(game_grid.ActualWidth, grid.ActualHeight), name);
             display.SetupSizes(new Size(game_grid.ActualWidth, grid.ActualHeight));
             logic.ReadHs();
+            lb_highScore.ItemsSource = logic.Highscores;
+
 
         }
 
