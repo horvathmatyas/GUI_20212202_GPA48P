@@ -245,7 +245,6 @@ namespace SpaceBaloons.Logic
             foreach (string line in lines)
             {
                 Highscores.Add(line);
-
             }
         }
         public void WriteHs()
@@ -255,6 +254,10 @@ namespace SpaceBaloons.Logic
             string newhs = "\n" + player.Name + ":" + player.Score;
             File.AppendAllText(Path.Combine("HsFile", "hs.txt"), newhs);
 
+        }
+        public void SortHS()
+        {
+            Highscores=Highscores.OrderByDescending(x => x.Split(":")[1]).ToList();
         }
     }
 }

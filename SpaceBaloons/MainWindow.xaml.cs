@@ -131,9 +131,22 @@ namespace SpaceBaloons
             logic.SetupGame(new Size(game_grid.ActualWidth, grid.ActualHeight), name);
             display.SetupSizes(new Size(game_grid.ActualWidth, grid.ActualHeight));
             logic.ReadHs();
-            lb_highScore.ItemsSource = logic.Highscores;
-
-
+            logic.SortHS();
+            Style s = new Style(typeof(Label));
+            s.Setters.Add(new Setter(Label.ForegroundProperty, Brushes.Black));
+            s.Setters.Add(new Setter(Label.FontSizeProperty,30.0));
+            s.Setters.Add(new Setter(Label.FontWeightProperty, FontWeights.UltraBold));
+            s.Setters.Add(new Setter(Label.FontFamilyProperty, new FontFamily("Arial")));
+            s.Setters.Add(new Setter(Label.BorderThicknessProperty, new Thickness(5)));
+            s.Setters.Add(new Setter(Label.BorderBrushProperty, Brushes.LightGray));
+            s.Setters.Add(new Setter(Label.HorizontalAlignmentProperty,HorizontalAlignment.Stretch));
+            foreach (var item in logic.Highscores)
+            {
+                Label lbl = new Label();
+                lbl.Content = item;
+                lbl.Style = s;
+                lb_highScore.Items.Add(lbl);
+            }
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
