@@ -257,7 +257,7 @@ namespace SpaceBaloons.Logic
         }
         public void SortHS()
         {
-            Highscores=Highscores.OrderByDescending(x => x.Split(":")[1]).ToList();
+            Highscores=Highscores.OrderByDescending(x => int.Parse(x.Split(":")[1])).ToList();
         }
     }
 }
