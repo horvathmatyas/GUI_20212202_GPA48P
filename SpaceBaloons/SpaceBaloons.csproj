@@ -24,7 +24,9 @@
     <None Remove="Images\Untitled-3.png" />
     <None Remove="Images\zöld.png" />
     <None Remove="Images\űrhajó2.jpg" />
+    <None Remove="Images\űrhajó2dwdwqd.png" />
     <None Remove="Images\űrhajó3.jpg" />
+    <None Remove="Images\űrhajófinal.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -73,7 +75,13 @@
     <Content Include="Images\űrhajó2.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\űrhajó2dwdwqd.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\űrhajó3.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\űrhajófinal.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

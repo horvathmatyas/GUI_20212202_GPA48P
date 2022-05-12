@@ -19,8 +19,11 @@ namespace SpaceBaloons
     /// </summary>
     public partial class MenuWindow : Window
     {
+        
+
         public MenuWindow()
         {
+            NewGame:
             InitializeComponent();
         }
 

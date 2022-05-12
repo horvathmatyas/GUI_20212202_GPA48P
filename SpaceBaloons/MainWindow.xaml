@@ -38,10 +38,16 @@
             <Border BorderThickness="0,0,0,3" BorderBrush="LightGray" Margin="0,10">
                 <Label Content="High Score List" HorizontalAlignment="Center" FontSize="25" FontWeight="Bold" Margin="0,0,0,15" Foreground="LightGray"/>
             </Border>
-            <DockPanel Margin="0,0,0,0">
-                <Label DockPanel.Dock="Left" Content="Asdocska"  Padding="10" FontSize="15" FontWeight="Black" Foreground="LightGray"></Label>
-                <Label DockPanel.Dock="Right" HorizontalAlignment="Right" Content="9999" Padding="10" FontSize="15" FontWeight="Black" Foreground="LightGray"></Label>
-            </DockPanel>
+            <ListBox x:Name="lb_highScore">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <WrapPanel Orientation="Horizontal">
+                            <Label Content="{Binding Name}"/>
+                            <Label Content="{Binding Score, NotifyOnSourceUpdated=True}"/>
+                        </WrapPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </StackPanel>
 
     </Grid>

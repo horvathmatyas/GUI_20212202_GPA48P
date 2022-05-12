@@ -48,7 +48,8 @@ namespace SpaceBaloons
         }
 
         private void Dt_Tick(object? sender, EventArgs e)
-        {           
+        {
+            lb_highScore.ItemsSource = logic.highscores;
             if (fireIng)
             {
                 logic.Control(GameLogic.Controls.Shoot);
@@ -86,6 +87,10 @@ namespace SpaceBaloons
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.Key==Key.P)
+            {
+                Logic_GameOver(this,null);
+            }
             if (e.Key == Key.Left || e.Key == Key.A)
             {
                 goingLeft = true;
@@ -148,6 +153,7 @@ namespace SpaceBaloons
                 var r = MessageBox.Show("Game Over");
                 if (r == MessageBoxResult.OK)
                 {
+                    logic.SaveScores();
                     this.Close();
                 }
             }
@@ -158,7 +164,8 @@ namespace SpaceBaloons
             var result = MessageBox.Show("Game Over");
             if (result == MessageBoxResult.OK)
             {
-                this.Close();                
+                logic.SaveScores();
+                this.Close();
             }
         }
 

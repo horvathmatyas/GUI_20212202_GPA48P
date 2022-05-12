@@ -14,7 +14,7 @@ namespace SpaceBaloons.Logic
 {
     internal class GameLogic : Interface.GameModel
     {
-        List<Player> highscores;
+        public List<Player> highscores;
         public event EventHandler Changed;
         public event EventHandler GameOver;
         public event EventHandler NextLevel;
@@ -62,12 +62,14 @@ namespace SpaceBaloons.Logic
         }
         public void SetupGame(System.Windows.Size area, string name)
         {
+            highscores = new List<Player>();
             this.area = area;
             Lasers = new List<Laser>();
             Baloons = new List<Baloon>();
             player = new Player(name);
             PlayerPos = new System.Drawing.Point((int)area.Width / 2, (int)area.Height / 10 * 8 + 50);
-
+            highscores.Add(player);
+            SetupScores();
         }
         public GameLogic()
         {
@@ -85,38 +87,43 @@ namespace SpaceBaloons.Logic
 
         private void newWave()
         {
-            double i = waveNumber;
-            int j = 0;
-            while (j != (int)i)
+            if (waveNumber != 10)
             {
-                int hp = 0;
-                if (i < 10 && i > 3)
+                double i = waveNumber;
+                int j = 0;
+                while (j != (int)i)
                 {
-                    hp = random.Next(4, 7);
+                    int hp = 0;
+                    if (i < 10 && i > 3)
+                    {
+                        hp = random.Next(4, 7);
+                    }
+                    else if (i <= 3)
+                    {
+                        hp = random.Next(1, 4);
+                    }
+                    else
+                    {
+                        hp = 6;
+                    }
+                    Baloons.Add(new Baloon(new System.Drawing.Point(random.Next(25, (int)area.Width - 25), random.Next(25, 100)), player.Level+1, hp));
+                    j++;
                 }
-                else if (i <= 3)
-                {
-                    hp = random.Next(1, 4);
-                }
-                else
-                {
-                    hp = 6;
-                }
-                Baloons.Add(new Baloon(new System.Drawing.Point(random.Next(25, (int)area.Width - 25), random.Next(25, 100)), 2, hp));
-                j++;
             }
-            waveNumber++;
-            if (waveNumber == 10 && player.Level == 1)
+            else if(player.Level==1 && Baloons.Count==0)
             {
                 waveNumber = 0;
                 Baloons.Clear();
                 NextLevel?.Invoke(this, null);
             }
-            else if (waveNumber == 100 && player.Level == 2)
+            else if (player.Level == 2 && Baloons.Count==0)
             {
                 waveNumber = 0;
                 NextLevel?.Invoke(this, null);
             }
+            waveNumber++;
+           
+            
             //else if (waveNumber == ?? && player.Level == 3)
             //{
 
@@ -191,7 +198,7 @@ namespace SpaceBaloons.Logic
                             player.Highscore = player.Score;
                         }
                         GameOver?.Invoke(this, null);
-                        break;
+                        goto Vege;
                     }
                     player.Health -= Baloons[i].Health;
                     Baloons.RemoveAt(i);
@@ -226,20 +233,28 @@ namespace SpaceBaloons.Logic
             shootTimer++;
             
             cdTime++;
+            RefreshList(player);
             Changed?.Invoke(this, null);
-            
+            Vege:
+            cdTime++;
         }
-        
-        private void SetupScores(string filename)
+
+        private void SetupScores()
         {
-            string jsonString = File.ReadAllText(filename+".json");
-            highscores  = JsonSerializer.Deserialize<List<Player>>(jsonString)!;
+            string jsonString = File.ReadAllText("hs.json");
+            string test = jsonString.Split("/")[0];
+            highscores = JsonSerializer.Deserialize<List<Player>>(jsonString);
         }
-        private void SaveScores(string filename)
+        public void SaveScores()
         {
             string jsonHS = JsonSerializer.Serialize(highscores);
-            File.WriteAllText(filename + ".json", jsonHS);
-
+            File.WriteAllText(Path.Combine(Directory.GetCurrentDirectory(),"hs.json"), jsonHS);        
+        }
+        private void RefreshList(Player p)
+        {
+            highscores.Remove(p);
+            highscores.Add(p);
+            highscores.OrderByDescending(x => x.Score);
         }
     }
 }
