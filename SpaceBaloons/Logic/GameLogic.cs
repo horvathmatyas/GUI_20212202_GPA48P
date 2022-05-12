@@ -14,7 +14,6 @@ namespace SpaceBaloons.Logic
 {
     internal class GameLogic : Interface.GameModel
     {
-        List<Player> highscores;
         public event EventHandler Changed;
         public event EventHandler GameOver;
         public event EventHandler NextLevel;
@@ -27,6 +26,10 @@ namespace SpaceBaloons.Logic
         int cdTime = 0;
         public int shootTimer = 0;
         static Random random = new Random();
+        public List<string> Names { get; set; }
+        public List<int> Scores { get; set; }
+        public List<string> Highscores { get; set; }
+
 
         public void ReduceHeat()
         {
@@ -62,6 +65,7 @@ namespace SpaceBaloons.Logic
         }
         public void SetupGame(System.Windows.Size area, string name)
         {
+            Highscores = new List<string>();
             this.area = area;
             Lasers = new List<Laser>();
             Baloons = new List<Baloon>();
@@ -85,38 +89,42 @@ namespace SpaceBaloons.Logic
 
         private void newWave()
         {
-            double i = waveNumber;
-            int j = 0;
-            while (j != (int)i)
+            if (waveNumber != 10)
             {
-                int hp = 0;
-                if (i < 10 && i > 3)
+                double i = waveNumber;
+                int j = 0;
+                while (j != (int)i)
                 {
-                    hp = random.Next(4, 7);
+                    int hp = 0;
+                    if (i < 10 && i > 3)
+                    {
+                        hp = random.Next(4, 7);
+                    }
+                    else if (i <= 3)
+                    {
+                        hp = random.Next(1, 4);
+                    }
+                    else
+                    {
+                        hp = 6;
+                    }
+                    Baloons.Add(new Baloon(new System.Drawing.Point(random.Next(25, (int)area.Width - 25), random.Next(25, 100)), player.Level + 1, hp));
+                    j++;
                 }
-                else if (i <= 3)
-                {
-                    hp = random.Next(1, 4);
-                }
-                else
-                {
-                    hp = 6;
-                }
-                Baloons.Add(new Baloon(new System.Drawing.Point(random.Next(25, (int)area.Width - 25), random.Next(25, 100)), 2, hp));
-                j++;
+            }
+            else if (player.Level == 1 && Baloons.Count == 0)
+            {
+                waveNumber = 0;
+                NextLevel?.Invoke(this, null);
+            }
+            else if (player.Level == 2 && Baloons.Count == 0)
+            {
+
+                waveNumber = 0;
+                NextLevel?.Invoke(this, null);
             }
             waveNumber++;
-            if (waveNumber == 10 && player.Level == 1)
-            {
-                waveNumber = 0;
-                Baloons.Clear();
-                NextLevel?.Invoke(this, null);
-            }
-            else if (waveNumber == 100 && player.Level == 2)
-            {
-                waveNumber = 0;
-                NextLevel?.Invoke(this, null);
-            }
+
             //else if (waveNumber == ?? && player.Level == 3)
             //{
 
@@ -230,15 +238,22 @@ namespace SpaceBaloons.Logic
             
         }
         
-        private void SetupScores(string filename)
+ 
+        public void ReadHs()
         {
-            string jsonString = File.ReadAllText(filename+".json");
-            highscores  = JsonSerializer.Deserialize<List<Player>>(jsonString)!;
+            string[] lines = File.ReadAllLines(Path.Combine("HsFile", "hs.txt"));
+            foreach (string line in lines)
+            {
+                Highscores.Add(line);
+
+            }
         }
-        private void SaveScores(string filename)
+        public void WriteHs()
         {
-            string jsonHS = JsonSerializer.Serialize(highscores);
-            File.WriteAllText(filename + ".json", jsonHS);
+            string newName = player.Name;
+            int newScore = player.Score;
+            string newhs = "\n" + player.Name + ":" + player.Score;
+            File.AppendAllText(Path.Combine("HsFile", "hs.txt"), newhs);
 
         }
     }

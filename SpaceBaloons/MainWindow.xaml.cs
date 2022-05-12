@@ -110,15 +110,20 @@ namespace SpaceBaloons
             {
                 logic.Control(GameLogic.Controls.RCD);
             }
+            if (e.Key == Key.P)
+            {
+                Logic_GameOver(this, null);
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+
             logic = new GameLogic();
             logic.GameOver += Logic_GameOver;
             logic.NextLevel += Logic_NextLevel;
             display.SetupModel(logic);
-
+            lb_highScore.ItemsSource = logic.Highscores;
             DispatcherTimer dt = new DispatcherTimer();
             dt.Interval = TimeSpan.FromMilliseconds(20);
             dt.Tick += Dt_Tick;
@@ -126,6 +131,8 @@ namespace SpaceBaloons
 
             logic.SetupGame(new Size(game_grid.ActualWidth, grid.ActualHeight), name);
             display.SetupSizes(new Size(game_grid.ActualWidth, grid.ActualHeight));
+            logic.ReadHs();
+
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -148,6 +155,7 @@ namespace SpaceBaloons
                 var r = MessageBox.Show("Game Over");
                 if (r == MessageBoxResult.OK)
                 {
+                    logic.WriteHs();
                     this.Close();
                 }
             }
@@ -158,6 +166,7 @@ namespace SpaceBaloons
             var result = MessageBox.Show("Game Over");
             if (result == MessageBoxResult.OK)
             {
+                logic.WriteHs();
                 this.Close();                
             }
         }
