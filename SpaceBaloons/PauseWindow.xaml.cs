@@ -41,12 +41,15 @@ namespace SpaceBaloons
             }
             catch (IOException ioe)
             {
-                MessageBox.Show("Már van ilyen nevű mentés");
+                MessageBox.Show("Sikertelen mentes");
             }
+            MessageBox.Show("Succesful save as " + logic.player.Name);
         }
         private void Button_Click_Load(object sender, RoutedEventArgs e)
         {
             Loads load=new Loads();
+            load.ShowDialog();
+            this.Close();
         }
         private void Button_Click_Exit(object sender, RoutedEventArgs e)
         {

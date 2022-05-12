@@ -33,6 +33,7 @@ namespace SpaceBaloons
         bool RC = false;
         public DispatcherTimer dt;
         public string name { get; set; }
+        public Player loadedPlayer;
 
         public NumberToColorConverter cv = new NumberToColorConverter();
         public MainWindow(string name)
@@ -45,6 +46,7 @@ namespace SpaceBaloons
             {
                
                 this.name = name; //itt visszaall a nev a regire valamiert
+                name = null;
             }
             Application.Current.MainWindow = this;
             dt = new DispatcherTimer();
@@ -58,9 +60,8 @@ namespace SpaceBaloons
             }
             else
             {
-                logic.player=p;
+                loadedPlayer=p;
             }
-            dt.Start();
             InitializeComponent();
         }
 
@@ -113,6 +114,10 @@ namespace SpaceBaloons
             }
             if (e.Key == Key.Space)
             {
+                if (!dt.IsEnabled)
+                {
+                    dt.Start();
+                }
                 fireIng = true;              
             }
             if (e.Key == Key.Q)
@@ -157,6 +162,7 @@ namespace SpaceBaloons
             else
             {
                 logic.SetupGame(new Size(game_grid.ActualWidth, grid.ActualHeight));
+                logic.player = loadedPlayer;
             }
             display.SetupSizes(new Size(game_grid.ActualWidth, grid.ActualHeight));
             logic.ReadHs();
@@ -205,15 +211,11 @@ namespace SpaceBaloons
  
         }
         private void Logic_GameOver(object? sender, EventArgs e)
-        {
-            var result = MessageBox.Show("Game Over");
-            if (result == MessageBoxResult.OK)
-            {
-                logic.WriteHs();
-                GameOver gameOver = new GameOver();
-                gameOver.ShowDialog();
-                this.Close();                
-            }
+        {            
+            logic.WriteHs();
+            GameOver gameOver = new GameOver();
+            gameOver.ShowDialog();
+            this.Close();                          
         }
 
         private void Window_KeyUp(object sender, KeyEventArgs e)

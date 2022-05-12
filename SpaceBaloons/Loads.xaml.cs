@@ -26,8 +26,10 @@ namespace SpaceBaloons
         public string SelectedSave { get; set; }
         public Loads()
         {
-            lb_saves.ItemsSource=GetAllSaves();
+            
             InitializeComponent();
+            lb_saves.ItemsSource = GetAllSaves();
+            
         }
         private List<string> GetAllSaves()
         {
@@ -35,18 +37,30 @@ namespace SpaceBaloons
             foreach (var item in Directory.GetFiles("Save"))
             {
                 saves.Add(item.Split(".")[0]);
+
             }
             return saves;
-        }
-        private void LoadSaveContent()
-        {
-            Player playerToLoad = JsonSerializer.Deserialize<Player>(System.IO.Path.Combine("Save", SelectedSave) + ".json");
-            MainWindow m = new MainWindow(playerToLoad);
         }
 
         public void lb_saves_Selected(object sender, RoutedEventArgs e)
         {
+            SelectedSave = lb_saves.SelectedItem.ToString();
             SelectedSave = (sender as ListBoxItem).Content.ToString();
+        }
+
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            StreamReader st = new StreamReader(SelectedSave+".json");
+            string content=st.ReadToEnd();
+            Player playerToLoad = JsonSerializer.Deserialize<Player>(content);
+            MainWindow m = new MainWindow(playerToLoad);
+            this.Close();
+        }
+
+        private void lb_saves_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            SelectedSave = (sender as ListBox).SelectedItem.ToString();
         }
     }
 }
