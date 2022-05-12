@@ -114,6 +114,10 @@ namespace SpaceBaloons
             {
                 Logic_GameOver(this, null);
             }
+            if (e.Key==Key.Escape)
+            {
+                PauseWindow p = new PauseWindow(logic);
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

@@ -12,7 +12,7 @@ using System.IO;
 
 namespace SpaceBaloons.Logic
 {
-    internal class GameLogic : Interface.GameModel
+    public class GameLogic : Interface.GameModel
     {
         public event EventHandler Changed;
         public event EventHandler GameOver;

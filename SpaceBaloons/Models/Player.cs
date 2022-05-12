@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SpaceBaloons.Models
 {
-    internal class Player
+    public class Player
     {
         public string Name { get; set; }
         public int Highscore { get; set; }

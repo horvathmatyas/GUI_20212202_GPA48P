@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SpaceBaloons.Models
 {
-    internal class Laser
+    public class Laser
     {        
         public Point Pos { get; set; }
         public int Speed { get; set; }
