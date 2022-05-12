@@ -43,8 +43,7 @@ namespace SpaceBaloons
                 name = logic.player.Name;
             }
             else
-            {
-               
+            {              
                 this.name = name; //itt visszaall a nev a regire valamiert
                 name = null;
             }
